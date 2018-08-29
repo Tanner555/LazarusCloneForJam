@@ -6,10 +6,10 @@ namespace LazarusClone
 {
     public class Brick : MonoBehaviour
     {
-        #region Fields
-        [Range(0.0f, 5f)]
-        public float downwardSpeed = 1f;
-        float downwardRepeatRate = 0.5f;
+        #region Fields   
+        private float downwardSpeed = 1f;
+        [Range(0.05f, 5f)]
+        public float downwardRepeatRate = 0.5f;
         #endregion
 
         #region ComponentProperties
@@ -79,12 +79,14 @@ namespace LazarusClone
         {
             CancelInvoke();
             gamemaster.CallOnBrickWasPlaced();
+            this.tag = gamemanager.BrickTag;
         }
 
         public void HitAreaBounds()
         {
             CancelInvoke();
             gamemaster.CallOnBrickWasPlaced();
+            this.tag = gamemanager.BrickTag;
         }
         #endregion
 

@@ -8,6 +8,7 @@ namespace LazarusClone
     {
         #region Fields
         public bool bIsTriggering = false;
+        public bool bIsTriggeringWFallingBrick = false;
         public bool bOutsidePlayArea = false;
 
         bool bHasDelayStart = false;
@@ -42,10 +43,23 @@ namespace LazarusClone
         }
         #endregion
 
+        #region Handlers
+        void ClearBrickIsFalling()
+        {
+            bIsTriggeringWFallingBrick = false;
+        }
+        #endregion
+
         #region UnityMessages
         private void OnEnable()
         {
             bOutsidePlayArea = gamemanager.isOutsideBounds(this.transform.position);
+            gamemaster.OnBrickWasPlaced += ClearBrickIsFalling;
+        }
+
+        private void OnDisable()
+        {
+            gamemaster.OnBrickWasPlaced -= ClearBrickIsFalling;
         }
 
         private void Start()
@@ -70,6 +84,11 @@ namespace LazarusClone
             if (collision.tag == gamemanager.BrickTag)
             {
                 bIsTriggering = true;
+                bIsTriggeringWFallingBrick = false;
+            }
+            else if(collision.tag == gamemanager.BrickFallingTag)
+            {
+                bIsTriggeringWFallingBrick = true;
             }
         }
 
@@ -85,6 +104,10 @@ namespace LazarusClone
             if (collision.tag == gamemanager.BrickTag)
             {
                 bIsTriggering = false;
+            }
+            else if (collision.tag == gamemanager.BrickFallingTag)
+            {
+                bIsTriggeringWFallingBrick = false;
             }
         }
         #endregion

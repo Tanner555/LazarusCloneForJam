@@ -6,6 +6,7 @@ TagManager:
   tags:
   - AreaBounds
   - Brick
+  - BrickFalling
   layers:
   - Default
   - TransparentFX

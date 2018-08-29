@@ -27,6 +27,14 @@ namespace LazarusClone
             get { return "Brick"; }
         }
 
+        /// <summary>
+        /// Used While Brick is Still Descending
+        /// </summary>
+        public string BrickFallingTag
+        {
+            get { return "BrickFalling"; }
+        }
+
         public LayerMask CheckForCollisionLayers;
         #endregion
 

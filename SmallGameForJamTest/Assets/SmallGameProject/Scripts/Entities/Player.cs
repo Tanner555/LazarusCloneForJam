@@ -112,20 +112,24 @@ namespace LazarusClone
                 return;
             }
 
-            if (LowerLeftChecker.bNotTriggerAndNotOutsideBounds)
+            if (LowerLeftChecker.bNotTriggerAndNotOutsideBounds &&
+                LowerLeftChecker.bIsTriggeringWFallingBrick == false)
             {
                 this.transform.position = this.transform.position +
                 new Vector3(-MovementSpeed, -MovementSpeed, 0);
             }
-            else if (LeftChecker.bTriggerAndNotOutsideBounds)
+            else if (LeftChecker.bTriggerAndNotOutsideBounds &&
+                LeftChecker.bIsTriggeringWFallingBrick == false)
             {
-                if (UpperLeftChecker.bNotTriggerAndNotOutsideBounds)
+                if (UpperLeftChecker.bNotTriggerAndNotOutsideBounds &&
+                    UpperLeftChecker.bIsTriggeringWFallingBrick == false)
                 {
                     this.transform.position = this.transform.position +
                     new Vector3(-MovementSpeed, MovementSpeed, 0);
                 }
             }
-            else if (LeftChecker.bNotTriggerAndNotOutsideBounds)
+            else if (LeftChecker.bNotTriggerAndNotOutsideBounds &&
+                LeftChecker.bIsTriggeringWFallingBrick == false)
             {
                 this.transform.position = this.transform.position +
                     new Vector3(-MovementSpeed, 0, 0);
@@ -144,20 +148,24 @@ namespace LazarusClone
                 return;
             }
 
-            if (LowerRightChecker.bNotTriggerAndNotOutsideBounds)
+            if (LowerRightChecker.bNotTriggerAndNotOutsideBounds &&
+                LowerRightChecker.bIsTriggeringWFallingBrick == false)
             {
                 this.transform.position = this.transform.position +
                 new Vector3(MovementSpeed, -MovementSpeed, 0);
             }
-            else if (RightChecker.bTriggerAndNotOutsideBounds)
+            else if (RightChecker.bTriggerAndNotOutsideBounds &&
+                RightChecker.bIsTriggeringWFallingBrick == false)
             {
-                if (UpperRightChecker.bNotTriggerAndNotOutsideBounds)
+                if (UpperRightChecker.bNotTriggerAndNotOutsideBounds &&
+                    UpperRightChecker.bIsTriggeringWFallingBrick == false)
                 {
                     this.transform.position = this.transform.position +
                     new Vector3(MovementSpeed, MovementSpeed, 0);
                 }
             }
-            else if (RightChecker.bNotTriggerAndNotOutsideBounds)
+            else if (RightChecker.bNotTriggerAndNotOutsideBounds &&
+                RightChecker.bIsTriggeringWFallingBrick == false)
             {
                 this.transform.position = this.transform.position +
                 new Vector3(MovementSpeed, 0, 0);
