@@ -5712,6 +5712,7 @@ GameObject:
   m_Component:
   - component: {fileID: 966567578}
   - component: {fileID: 1306852715}
+  - component: {fileID: 1306852716}
   m_Layer: 0
   m_Name: BrickPlacer
   m_TagString: Untagged
@@ -5742,6 +5743,19 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &1306852716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1306852714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93eaf6d14481fb14cb25d157f163d02a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BrickPrefab: {fileID: 1442592947356450, guid: b01f5769220837e49a0a2c14ef05b521,
+    type: 2}
 --- !u!1001 &1310090914
 Prefab:
   m_ObjectHideFlags: 0

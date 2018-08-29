@@ -41,19 +41,6 @@ namespace LazarusClone
         }
         #endregion
 
-        #region Services
-        void SE_PlaceRandomBrick()
-        {
-            if (BrickPrefab == null)
-            {
-                Debug.LogError("No Brick Prefab On Placer");
-                return;
-            }
-
-
-        }
-        #endregion
-
         #region Handlers
         void PlaceBrick()
         {
