@@ -17,6 +17,16 @@ namespace LazarusClone
             get { return "AreaBounds"; }
         }
 
+        public string PlayerTag
+        {
+            get { return "Player"; }
+        }
+
+        public string BrickTag
+        {
+            get { return "Brick"; }
+        }
+
         public LayerMask CheckForCollisionLayers;
         #endregion
 
