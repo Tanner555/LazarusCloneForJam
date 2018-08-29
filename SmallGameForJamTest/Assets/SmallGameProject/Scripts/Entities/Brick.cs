@@ -10,19 +10,6 @@ namespace LazarusClone
         [Range(0.0f, 5f)]
         public float downwardSpeed = 1f;
         float downwardRepeatRate = 0.5f;
-
-        private BoxCollider2D childBoxCollider
-        {
-            get
-            {
-                if(_childBoxCollider == null)
-                {
-                    _childBoxCollider = transform.GetComponentInChildren<BoxCollider2D>();
-                }
-                return _childBoxCollider;
-            }
-        }
-        private BoxCollider2D _childBoxCollider = null;
         #endregion
 
         #region ComponentProperties
@@ -57,10 +44,13 @@ namespace LazarusClone
             InvokeRepeating("SE_UpdateBrickPosition", downwardRepeatRate, downwardRepeatRate);
         }
 
-        //private void OnTriggerEnter2D(Collider2D collision)
-        //{
-
-        //}
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(collision.tag == gamemanager.PlayerTag)
+            {
+                gamemaster.CallOnPlayerWasKilled();
+            }
+        }
 
         //private void OnTriggerExit2D(Collider2D collision)
         //{
@@ -82,24 +72,35 @@ namespace LazarusClone
         #region PublicCollisionMethods
         public void HitPlayer()
         {
-            Debug.Log("Hit Player");
-            CancelInvoke();
+            //CancelInvoke();
         }
 
         public void HitBrick()
         {
-            Debug.Log("Hit Brick");
             CancelInvoke();
+            gamemaster.CallOnBrickWasPlaced();
         }
 
         public void HitAreaBounds()
         {
-            Debug.Log("Hit Area Bounds");
             CancelInvoke();
+            gamemaster.CallOnBrickWasPlaced();
         }
         #endregion
 
         #region CommentedCode
+        //private BoxCollider2D childBoxCollider
+        //{
+        //    get
+        //    {
+        //        if (_childBoxCollider == null)
+        //        {
+        //            _childBoxCollider = transform.GetComponentInChildren<BoxCollider2D>();
+        //        }
+        //        return _childBoxCollider;
+        //    }
+        //}
+        //private BoxCollider2D _childBoxCollider = null;
         //bool CanUpdateBrickPos()
         //{
         //    if(childBoxCollider == null)

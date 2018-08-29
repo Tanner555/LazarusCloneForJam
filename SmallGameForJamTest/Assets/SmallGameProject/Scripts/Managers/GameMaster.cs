@@ -13,6 +13,8 @@ namespace LazarusClone
         public event GeneralEventHandler OnInputMoveRight;
         //Game Events
         public event GeneralEventHandler OnBrickWasPlaced;
+        public event GeneralEventHandler OnPlayerWasKilled;
+        public event GeneralEventHandler OnPlayerWon;
         #endregion
 
         #region EventCalls
@@ -31,6 +33,16 @@ namespace LazarusClone
         public void CallOnBrickWasPlaced()
         {
             if (OnBrickWasPlaced != null) OnBrickWasPlaced();
+        }
+
+        public void CallOnPlayerWasKilled()
+        {
+            if (OnPlayerWasKilled != null) OnPlayerWasKilled();
+        }
+
+        public void CallOnPlayerWon()
+        {
+            if (OnPlayerWon != null) OnPlayerWon();
         }
         #endregion
     }
