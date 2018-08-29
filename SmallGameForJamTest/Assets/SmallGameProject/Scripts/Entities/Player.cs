@@ -8,6 +8,21 @@ namespace LazarusClone
     {
         #region Fields
         protected float MovementSpeed = 1;
+
+        //CollisionCheckers
+        [Header("CollisionCheckers")]
+        [SerializeField]
+        PlayerCollisionChecker LeftChecker = null;
+        [SerializeField]
+        PlayerCollisionChecker UpperLeftChecker = null;
+        [SerializeField]
+        PlayerCollisionChecker LowerLeftChecker = null;
+        [SerializeField]
+        PlayerCollisionChecker RightChecker = null;
+        [SerializeField]
+        PlayerCollisionChecker UpperRightChecker = null;
+        [SerializeField]
+        PlayerCollisionChecker LowerRightChecker = null;
         #endregion
 
         #region Properties
@@ -22,6 +37,15 @@ namespace LazarusClone
             }
         }
         BoxCollider2D _myCollider = null;
+
+        bool bHasAllCheckers
+        {
+            get
+            {
+                return LeftChecker && UpperLeftChecker && LowerLeftChecker
+                    && RightChecker && LowerRightChecker && UpperRightChecker;
+            }
+        }
         #endregion
 
         #region ComponentProperties
@@ -78,18 +102,48 @@ namespace LazarusClone
         #region Handlers
         void OnMoveLeft()
         {
-            if (this.transform.position.x - MovementSpeed <= LeftBounds) return;
             //Only Move If Hasn't Reached Bounds
-            this.transform.position = this.transform.position +
-                new Vector3(-MovementSpeed, 0, 0);
+            if (this.transform.position.x - MovementSpeed <= LeftBounds) return;
+
+            //Only Move If Has All Checkers
+            if (bHasAllCheckers == false)
+            {
+                Debug.LogError("Doesn't have all checkers");
+                return;
+            }
+
+            if (LeftChecker.bTriggerAndNotOutsideBounds)
+            {
+
+            }
+            else if (LeftChecker.bNotTriggerAndNotOutsideBounds)
+            {
+                this.transform.position = this.transform.position +
+                    new Vector3(-MovementSpeed, 0, 0);
+            }
         }
 
         void OnMoveRight()
         {
-            if (this.transform.position.x + MovementSpeed >= RightBounds) return;
             //Only Move If Hasn't Reached Bounds
-            this.transform.position = this.transform.position +
-            new Vector3(MovementSpeed, 0, 0);
+            if (this.transform.position.x + MovementSpeed >= RightBounds) return;
+
+            //Only Move If Has All Checkers
+            if (bHasAllCheckers == false)
+            {
+                Debug.LogError("Doesn't have all checkers");
+                return;
+            }
+
+            if (RightChecker.bTriggerAndNotOutsideBounds)
+            {
+
+            }
+            else if (RightChecker.bNotTriggerAndNotOutsideBounds)
+            {
+                this.transform.position = this.transform.position +
+                new Vector3(MovementSpeed, 0, 0);
+            }
         }
         #endregion
 
