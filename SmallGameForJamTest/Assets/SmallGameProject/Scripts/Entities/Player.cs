@@ -18,11 +18,15 @@ namespace LazarusClone
         [SerializeField]
         PlayerCollisionChecker LowerLeftChecker = null;
         [SerializeField]
+        PlayerCollisionChecker VeryLowerLeftChecker = null;
+        [SerializeField]
         PlayerCollisionChecker RightChecker = null;
         [SerializeField]
         PlayerCollisionChecker UpperRightChecker = null;
         [SerializeField]
         PlayerCollisionChecker LowerRightChecker = null;
+        [SerializeField]
+        PlayerCollisionChecker VeryLowerRightChecker = null;
         #endregion
 
         #region Properties
@@ -43,7 +47,8 @@ namespace LazarusClone
             get
             {
                 return LeftChecker && UpperLeftChecker && LowerLeftChecker
-                    && RightChecker && LowerRightChecker && UpperRightChecker;
+                    && RightChecker && LowerRightChecker && UpperRightChecker
+                    && VeryLowerLeftChecker && VeryLowerRightChecker;
             }
         }
         #endregion
@@ -113,7 +118,8 @@ namespace LazarusClone
             }
 
             if (LowerLeftChecker.bNotTriggerAndNotOutsideBounds &&
-                LowerLeftChecker.bIsTriggeringWFallingBrick == false)
+                LowerLeftChecker.bIsTriggeringWFallingBrick == false &&
+                VeryLowerLeftChecker.bTriggeringOrOutsideBounds)
             {
                 this.transform.position = this.transform.position +
                 new Vector3(-MovementSpeed, -MovementSpeed, 0);
@@ -129,7 +135,8 @@ namespace LazarusClone
                 }
             }
             else if (LeftChecker.bNotTriggerAndNotOutsideBounds &&
-                LeftChecker.bIsTriggeringWFallingBrick == false)
+                LeftChecker.bIsTriggeringWFallingBrick == false &&
+                LowerLeftChecker.bTriggeringOrOutsideBounds)
             {
                 this.transform.position = this.transform.position +
                     new Vector3(-MovementSpeed, 0, 0);
@@ -149,7 +156,8 @@ namespace LazarusClone
             }
 
             if (LowerRightChecker.bNotTriggerAndNotOutsideBounds &&
-                LowerRightChecker.bIsTriggeringWFallingBrick == false)
+                LowerRightChecker.bIsTriggeringWFallingBrick == false &&
+                VeryLowerRightChecker.bTriggeringOrOutsideBounds)
             {
                 this.transform.position = this.transform.position +
                 new Vector3(MovementSpeed, -MovementSpeed, 0);
@@ -165,7 +173,8 @@ namespace LazarusClone
                 }
             }
             else if (RightChecker.bNotTriggerAndNotOutsideBounds &&
-                RightChecker.bIsTriggeringWFallingBrick == false)
+                RightChecker.bIsTriggeringWFallingBrick == false &&
+                LowerRightChecker.bTriggeringOrOutsideBounds)
             {
                 this.transform.position = this.transform.position +
                 new Vector3(MovementSpeed, 0, 0);
