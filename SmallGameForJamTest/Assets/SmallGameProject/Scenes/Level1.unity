@@ -3887,7 +3887,7 @@ Prefab:
     - target: {fileID: 224485085732059102, guid: 2ac285aae1a30c74ca21f316918d2bff,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224485085732059102, guid: 2ac285aae1a30c74ca21f316918d2bff,
         type: 2}
@@ -5756,6 +5756,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BrickPrefab: {fileID: 1442592947356450, guid: b01f5769220837e49a0a2c14ef05b521,
     type: 2}
+  BrickHolder: {fileID: 1307574679}
+--- !u!1 &1307574678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1307574679}
+  m_Layer: 0
+  m_Name: BrickHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1307574679
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1307574678}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1746114885}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1310090914
 Prefab:
   m_ObjectHideFlags: 0
@@ -7364,6 +7398,7 @@ RectTransform:
   - {fileID: 966567578}
   - {fileID: 1938748794}
   - {fileID: 1214773231}
+  - {fileID: 1307574679}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8209,7 +8244,7 @@ GameObject:
   - component: {fileID: 1938748796}
   m_Layer: 0
   m_Name: AreaBounds
-  m_TagString: Untagged
+  m_TagString: AreaBounds
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

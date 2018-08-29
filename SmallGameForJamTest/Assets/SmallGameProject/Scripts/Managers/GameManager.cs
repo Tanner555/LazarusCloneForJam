@@ -11,6 +11,13 @@ namespace LazarusClone
         protected BoxCollider2D AreaBounds;
         #endregion
 
+        #region TagsAndLayers
+        public string AreaBoundsTag
+        {
+            get { return "AreaBounds"; }
+        }
+        #endregion
+
         #region BoundsProperties
         /// <summary>
         /// Got Bound Formulas From Unity Answers At
