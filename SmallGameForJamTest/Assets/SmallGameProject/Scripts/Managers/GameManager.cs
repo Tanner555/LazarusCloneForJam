@@ -11,7 +11,7 @@ namespace LazarusClone
         protected BoxCollider2D AreaBounds;
         #endregion
 
-        #region Properties
+        #region BoundsProperties
         /// <summary>
         /// Got Bound Formulas From Unity Answers At
         /// https://answers.unity.com/questions/860212/world-coordinates-of-boxcollider2d.html
@@ -73,12 +73,46 @@ namespace LazarusClone
         private float _DownwardBounds = float.MaxValue;
         #endregion
 
+        #region PlayerProperties
+        public Player playerInstance
+        {
+            get
+            {
+                if (_playerInstance == null)
+                    _playerInstance = GameObject.FindObjectOfType<Player>();
+
+                return _playerInstance;
+            }
+        }
+        private Player _playerInstance = null;
+
+        public Transform playerTransform
+        {
+            get
+            {
+                return playerInstance.transform;
+            }
+        }
+        #endregion
+
+        #region ComponenProperties
+        GameMaster gamemaster
+        {
+            get { return GameMaster.thisInstance; }
+        }
+        #endregion
+
         #region UnityMessages
         private void Start()
         {
             if(AreaBounds == null)
             {
                 Debug.LogError("No Area Bounds On GameManager");
+            }
+            else
+            {
+                //Start Game!
+                
             }
         }
         #endregion

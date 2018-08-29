@@ -11,6 +11,8 @@ namespace LazarusClone
         public delegate void GeneralEventHandler();
         public event GeneralEventHandler OnInputMoveLeft;
         public event GeneralEventHandler OnInputMoveRight;
+        //Game Events
+        public event GeneralEventHandler OnBrickWasPlaced;
         #endregion
 
         #region EventCalls
@@ -23,6 +25,12 @@ namespace LazarusClone
         public void CallOnInputMoveRight()
         {
             if (OnInputMoveRight != null) OnInputMoveRight();
+        }
+
+        //Game Events
+        public void CallOnBrickWasPlaced()
+        {
+            if (OnBrickWasPlaced != null) OnBrickWasPlaced();
         }
         #endregion
     }
