@@ -121,6 +121,14 @@ namespace LazarusClone
         }
         #endregion
 
+        #region Getters
+        public bool isOutsideBounds(Vector3 _pos)
+        {
+            return _pos.x < LeftBounds || _pos.x > RightBounds ||
+                _pos.y < DownwardBounds || _pos.y > UpwardBounds;
+        }
+        #endregion
+
         #region UnityMessages
         private void Start()
         {

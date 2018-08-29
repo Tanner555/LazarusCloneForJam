@@ -43,6 +43,11 @@ namespace LazarusClone
         #endregion
 
         #region UnityMessages
+        private void OnEnable()
+        {
+            bOutsidePlayArea = gamemanager.isOutsideBounds(this.transform.position);
+        }
+
         private void Start()
         {
             Invoke("DelayStart", 0.5f);
@@ -55,25 +60,31 @@ namespace LazarusClone
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (bHasDelayStart == false) return;
-            if(collision.tag == gamemanager.BrickTag)
-            {
-                bIsTriggering = true;
-            }else if(collision.tag == gamemanager.AreaBoundsTag)
+            if (collision.tag == gamemanager.AreaBoundsTag)
             {
                 bOutsidePlayArea = false;
+            }
+
+            if (bHasDelayStart == false) return;
+
+            if (collision.tag == gamemanager.BrickTag)
+            {
+                bIsTriggering = true;
             }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
+            if (collision.tag == gamemanager.AreaBoundsTag)
+            {
+                bOutsidePlayArea = true;
+            }
+
             if (bHasDelayStart == false) return;
+
             if (collision.tag == gamemanager.BrickTag)
             {
                 bIsTriggering = false;
-            }else if(collision.tag == gamemanager.AreaBoundsTag)
-            {
-                bOutsidePlayArea = true;
             }
         }
         #endregion

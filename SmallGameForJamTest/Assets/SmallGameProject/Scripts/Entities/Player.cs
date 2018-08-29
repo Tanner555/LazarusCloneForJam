@@ -112,9 +112,18 @@ namespace LazarusClone
                 return;
             }
 
-            if (LeftChecker.bTriggerAndNotOutsideBounds)
+            if (LowerLeftChecker.bNotTriggerAndNotOutsideBounds)
             {
-
+                this.transform.position = this.transform.position +
+                new Vector3(-MovementSpeed, -MovementSpeed, 0);
+            }
+            else if (LeftChecker.bTriggerAndNotOutsideBounds)
+            {
+                if (UpperLeftChecker.bNotTriggerAndNotOutsideBounds)
+                {
+                    this.transform.position = this.transform.position +
+                    new Vector3(-MovementSpeed, MovementSpeed, 0);
+                }
             }
             else if (LeftChecker.bNotTriggerAndNotOutsideBounds)
             {
@@ -135,9 +144,18 @@ namespace LazarusClone
                 return;
             }
 
-            if (RightChecker.bTriggerAndNotOutsideBounds)
+            if (LowerRightChecker.bNotTriggerAndNotOutsideBounds)
             {
-
+                this.transform.position = this.transform.position +
+                new Vector3(MovementSpeed, -MovementSpeed, 0);
+            }
+            else if (RightChecker.bTriggerAndNotOutsideBounds)
+            {
+                if (UpperRightChecker.bNotTriggerAndNotOutsideBounds)
+                {
+                    this.transform.position = this.transform.position +
+                    new Vector3(MovementSpeed, MovementSpeed, 0);
+                }
             }
             else if (RightChecker.bNotTriggerAndNotOutsideBounds)
             {
