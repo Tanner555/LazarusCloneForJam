@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224461625953227184}
   - component: {fileID: 114356818014559894}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BrickPlacementContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

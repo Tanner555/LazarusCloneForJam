@@ -2406,6 +2406,15 @@ Prefab:
       propertyPath: AreaBounds
       value: 
       objectReference: {fileID: 1938748795}
+    - target: {fileID: 1487755495942160, guid: 5d90e2103a8d00743993ba12d6aea56f, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114795717530702968, guid: 5d90e2103a8d00743993ba12d6aea56f,
+        type: 2}
+      propertyPath: CheckForCollisionLayers.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d90e2103a8d00743993ba12d6aea56f, type: 2}
   m_IsPrefabAsset: 0
@@ -5713,7 +5722,7 @@ GameObject:
   - component: {fileID: 966567578}
   - component: {fileID: 1306852715}
   - component: {fileID: 1306852716}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BrickPlacer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5765,7 +5774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1307574679}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BrickHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

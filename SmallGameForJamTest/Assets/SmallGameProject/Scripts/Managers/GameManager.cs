@@ -16,6 +16,8 @@ namespace LazarusClone
         {
             get { return "AreaBounds"; }
         }
+
+        public LayerMask CheckForCollisionLayers;
         #endregion
 
         #region BoundsProperties
