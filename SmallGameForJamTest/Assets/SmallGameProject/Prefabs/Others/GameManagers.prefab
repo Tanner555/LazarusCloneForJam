@@ -67,6 +67,7 @@ MonoBehaviour:
   moveLeft: 97
   moveRight: 100
   gameMenu: 27
+  debugKey: 107
 --- !u!114 &114795717530702968
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -11,6 +11,7 @@ namespace LazarusClone
         public KeyCode moveLeft;
         public KeyCode moveRight;
         public KeyCode gameMenu;
+        public KeyCode debugKey;
         #endregion
 
         #region Properties
@@ -22,6 +23,11 @@ namespace LazarusClone
         GameManager gamemanager
         {
             get { return GameManager.thisInstance; }
+        }
+
+        GameInstance gameinstance
+        {
+            get { return GameInstance.thisInstance; }
         }
 
         protected UiMaster uiMaster
@@ -53,6 +59,10 @@ namespace LazarusClone
                 if (Input.GetKeyDown(moveRight))
                 {
                     gamemaster.CallOnInputMoveRight();
+                }
+                if (Input.GetKeyDown(debugKey))
+                {
+                    gameinstance.bDebugOnInputDesired = true;
                 }
             }
             if (Input.GetKeyDown(gameMenu))

@@ -74,6 +74,9 @@ namespace LazarusClone
         [Header("Data Containing Level Settings")]
         [SerializeField]
         protected LevelSettingsData levelSettingsData;
+        [Header("Debug")]
+        [SerializeField]
+        public bool bDebugOnInputDesired = false;
         #endregion
 
         #region UnityMessages
