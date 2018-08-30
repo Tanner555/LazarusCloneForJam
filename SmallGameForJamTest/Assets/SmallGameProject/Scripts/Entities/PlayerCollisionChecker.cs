@@ -19,6 +19,8 @@ namespace LazarusClone
         [Header("Brick Checking On Trigger")]
         [Tooltip("Should Brick Checking Be On Trigger, Default Is False And Updated On Linecast")]
         public bool bUpdateOnTrigger = false;
+
+        private float distanceCheck = 5f;
         #endregion
 
         #region Properties
@@ -68,15 +70,54 @@ namespace LazarusClone
             {
                 Debug.DrawLine(_startPos, transform.position, Color.green, 1f, false);
             }
-            //All Collision Checkers should be on the IgnoreRaycast Layer
-            RaycastHit2D myHit = Physics2D.Linecast(_startPos, transform.position, gamemanager.CheckForCollisionLayersIgnorePlayerAndBounds);
-            if (myHit.transform != null)
+            var _heading = transform.position - _startPos;
+            var _distance = _heading.magnitude;
+            var _direction = _heading / _distance;
+
+            RaycastHit2D[] _myHits = Physics2D.RaycastAll(_startPos, _direction, distanceCheck, gamemanager.CheckForCollisionLayersIgnorePlayerAndBounds);
+            if(_myHits.Length <= 0)
             {
-                if(myHit.transform.tag == gamemanager.BrickTag)
+                bIsTriggering = false;
+                bIsTriggeringWFallingBrick = false;
+            }
+            else
+            {
+                //Used For Debugging
+            }
+
+            float _closestDistance = float.MaxValue;
+            Transform _closestBrick = null;
+            float _distanceFromStartPos = Vector3.Distance(_startPos, transform.position);
+
+            foreach (var _myHit in _myHits)
+            {
+                string _hitTag = _myHit.transform.tag;
+                if (_hitTag != gamemanager.BrickTag &&
+                    _hitTag != gamemanager.BrickFallingTag)
+                {
+                    continue;
+                }
+                else
+                {
+                    float _checkDistance = Vector3.Distance(_myHit.transform.position, transform.position);
+                    //Only Include Closest Brick If Distance Is Less Than From Start Position To Checker
+                    if (_checkDistance > _distanceFromStartPos) continue;
+                    else if (_checkDistance < _closestDistance)
+                    {
+                        _closestBrick = _myHit.transform;
+                        _closestDistance = _checkDistance;
+                    }
+                }
+            }
+
+            if (_closestBrick != null)
+            {
+                if (_closestBrick.tag == gamemanager.BrickTag)
                 {
                     bIsTriggering = true;
                     bIsTriggeringWFallingBrick = false;
-                }else if(myHit.transform.tag == gamemanager.BrickFallingTag)
+                }
+                else if (_closestBrick.tag == gamemanager.BrickFallingTag)
                 {
                     bIsTriggering = false;
                     bIsTriggeringWFallingBrick = true;
