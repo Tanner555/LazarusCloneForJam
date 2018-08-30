@@ -117,6 +117,13 @@ namespace LazarusClone
                 return;
             }
 
+            //Debug.DrawLine(transform.position, transform.position + (LeftChecker.transform.localPosition), Color.green, 1f, false);
+            //RaycastHit2D myHit = Physics2D.Linecast(transform.position, transform.position + (LeftChecker.transform.localPosition), gamemanager.CheckForCollisionLayersIgnorePlayerAndBounds);
+            //if (myHit.transform != null)
+            //{
+            //    Debug.Log("Hit " + myHit.transform.name);
+            //}
+
             if (LowerLeftChecker.bNotTriggerAndNotOutsideBounds &&
                 LowerLeftChecker.bIsTriggeringWFallingBrick == false &&
                 VeryLowerLeftChecker.bTriggeringOrOutsideBounds)

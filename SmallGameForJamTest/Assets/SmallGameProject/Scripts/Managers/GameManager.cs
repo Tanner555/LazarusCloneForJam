@@ -36,6 +36,8 @@ namespace LazarusClone
         }
 
         public LayerMask CheckForCollisionLayers;
+        public LayerMask CheckForCollisionLayersIgnorePlayerAndBounds;
+        public LayerMask CheckForCollisionLayersIgnoreBrickAndBounds;
         #endregion
 
         #region BoundsProperties
