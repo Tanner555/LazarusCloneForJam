@@ -74,6 +74,10 @@ namespace LazarusClone
         #region ButtonCalls-MainMenu
         public virtual void CallGoToMainMenu()
         {
+            if (gamemaster.bIsGamePaused)
+            {
+                gamemaster.CallOnToggleIsGamePaused(false);
+            }
             gameInstance.GoToMainMenu();
         }
 
@@ -83,6 +87,10 @@ namespace LazarusClone
             bool _level = false;
             if (gameInstance.IsLoadingNextPermitted(out _scenario, out _level))
             {
+                if (gamemaster.bIsGamePaused)
+                {
+                    gamemaster.CallOnToggleIsGamePaused(false);
+                }
                 if (_scenario) gameInstance.GoToNextScenario();
                 else if (_level) gameInstance.GoToNextLevel();
             }
@@ -90,6 +98,10 @@ namespace LazarusClone
 
         public virtual void CallRestartLevel()
         {
+            if (gamemaster.bIsGamePaused)
+            {
+                gamemaster.CallOnToggleIsGamePaused(false);
+            }
             gameInstance.RestartCurrentLevel();
         }
         #endregion

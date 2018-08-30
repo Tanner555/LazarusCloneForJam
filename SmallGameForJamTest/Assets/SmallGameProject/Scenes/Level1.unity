@@ -2406,35 +2406,6 @@ Prefab:
       propertyPath: AreaBounds
       value: 
       objectReference: {fileID: 1938748795}
-    - target: {fileID: 1487755495942160, guid: 5d90e2103a8d00743993ba12d6aea56f, type: 2}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114795717530702968, guid: 5d90e2103a8d00743993ba12d6aea56f,
-        type: 2}
-      propertyPath: CheckForCollisionLayers.m_Bits
-      value: 769
-      objectReference: {fileID: 0}
-    - target: {fileID: 114795717530702968, guid: 5d90e2103a8d00743993ba12d6aea56f,
-        type: 2}
-      propertyPath: CheckForCollisionLayersIgnorePlayer.m_Bits
-      value: 513
-      objectReference: {fileID: 0}
-    - target: {fileID: 114795717530702968, guid: 5d90e2103a8d00743993ba12d6aea56f,
-        type: 2}
-      propertyPath: CheckForCollisionLayersIgnoreBrick.m_Bits
-      value: 257
-      objectReference: {fileID: 0}
-    - target: {fileID: 114795717530702968, guid: 5d90e2103a8d00743993ba12d6aea56f,
-        type: 2}
-      propertyPath: CheckForCollisionLayersIgnoreBrickAndBounds.m_Bits
-      value: 257
-      objectReference: {fileID: 0}
-    - target: {fileID: 114795717530702968, guid: 5d90e2103a8d00743993ba12d6aea56f,
-        type: 2}
-      propertyPath: CheckForCollisionLayersIgnorePlayerAndBounds.m_Bits
-      value: 513
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d90e2103a8d00743993ba12d6aea56f, type: 2}
   m_IsPrefabAsset: 0

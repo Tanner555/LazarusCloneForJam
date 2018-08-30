@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114795717530702968}
   - component: {fileID: 114339711426373086}
   - component: {fileID: 114486606306661656}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameManagers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,6 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveLeft: 97
   moveRight: 100
+  gameMenu: 27
 --- !u!114 &114795717530702968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,3 +79,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AreaBounds: {fileID: 0}
+  CheckForCollisionLayers:
+    serializedVersion: 2
+    m_Bits: 769
+  CheckForCollisionLayersIgnorePlayerAndBounds:
+    serializedVersion: 2
+    m_Bits: 513
+  CheckForCollisionLayersIgnoreBrickAndBounds:
+    serializedVersion: 2
+    m_Bits: 257

@@ -6,9 +6,12 @@ namespace LazarusClone
 {
     public class InputManager : BaseSingleton<InputManager>
     {
+        #region Fields
         [Header("Inputs Used For Game")]
         public KeyCode moveLeft;
         public KeyCode moveRight;
+        public KeyCode gameMenu;
+        #endregion
 
         #region Properties
         GameMaster gamemaster
@@ -20,21 +23,44 @@ namespace LazarusClone
         {
             get { return GameManager.thisInstance; }
         }
+
+        protected UiMaster uiMaster
+        {
+            get { return UiMaster.thisInstance; }
+        }
         #endregion
+
+        #region UnityMessages
+        private void Start()
+        {
+            if (gamemaster == null || gamemanager == null ||
+                uiMaster == null)
+            {
+                Debug.LogError("Missing Components From Input Manager");
+                Destroy(this, 0.1f);
+            }
+        }
 
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(moveLeft))
+            if (gamemaster.bIsGamePaused == false)
             {
-                gamemaster.CallOnInputMoveLeft();
+                if (Input.GetKeyDown(moveLeft))
+                {
+                    gamemaster.CallOnInputMoveLeft();
+                }
+                if (Input.GetKeyDown(moveRight))
+                {
+                    gamemaster.CallOnInputMoveRight();
+                }
             }
-            if (Input.GetKeyDown(moveRight))
+            if (Input.GetKeyDown(gameMenu))
             {
-                gamemaster.CallOnInputMoveRight();
+                uiMaster.CallEventMenuToggle();
             }
         }
-
+        #endregion
 
     }
 }
