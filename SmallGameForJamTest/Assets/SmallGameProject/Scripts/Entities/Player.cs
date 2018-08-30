@@ -126,6 +126,7 @@ namespace LazarusClone
 
             if (LowerLeftChecker.bNotTriggerAndNotOutsideBounds &&
                 LowerLeftChecker.bIsTriggeringWFallingBrick == false &&
+                LeftChecker.bIsTriggeringWFallingBrick == false &&
                 VeryLowerLeftChecker.bTriggeringOrOutsideBounds)
             {
                 this.transform.position = this.transform.position +
@@ -171,6 +172,7 @@ namespace LazarusClone
 
             if (LowerRightChecker.bNotTriggerAndNotOutsideBounds &&
                 LowerRightChecker.bIsTriggeringWFallingBrick == false &&
+                RightChecker.bIsTriggeringWFallingBrick == false &&
                 VeryLowerRightChecker.bTriggeringOrOutsideBounds)
             {
                 this.transform.position = this.transform.position +

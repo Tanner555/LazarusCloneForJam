@@ -21,6 +21,7 @@ namespace LazarusClone
         public bool bUpdateOnTrigger = false;
 
         private float distanceCheck = 5f;
+        private float checkerToBrickPosCheck = 0.35f;
         #endregion
 
         #region Properties
@@ -79,6 +80,7 @@ namespace LazarusClone
             {
                 bIsTriggering = false;
                 bIsTriggeringWFallingBrick = false;
+                return;
             }
             else
             {
@@ -107,6 +109,22 @@ namespace LazarusClone
                         _closestBrick = _myHit.transform;
                         _closestDistance = _checkDistance;
                     }
+                }
+            }
+
+            float _checkXDist = 0;
+            float _checkYDist = 0;
+
+            //If Position Of Brick Is No Where Near The
+            //Same Pos As Checker, It's Not The Brick I Was Checking For
+            if (_closestBrick != null)
+            {
+                _checkXDist = Mathf.Abs(transform.position.x - _closestBrick.transform.position.x);
+                _checkYDist = Mathf.Abs(transform.position.y - _closestBrick.transform.position.y);
+                if (_checkXDist > checkerToBrickPosCheck ||
+                    _checkYDist > checkerToBrickPosCheck)
+                {
+                    _closestBrick = null;
                 }
             }
 
