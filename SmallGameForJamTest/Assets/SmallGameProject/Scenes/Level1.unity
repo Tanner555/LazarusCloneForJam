@@ -3704,8 +3704,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.065, y: 0}
-  m_SizeDelta: {x: 17.024, y: 1.084}
+  m_AnchoredPosition: {x: -0.014, y: 0}
+  m_SizeDelta: {x: 17, y: 1.084}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1001 &978453305
 Prefab:
@@ -4564,7 +4564,7 @@ Prefab:
     - target: {fileID: 224758025586794896, guid: 5f420405edd4f13408756e4fddf1646f,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224758025586794896, guid: 5f420405edd4f13408756e4fddf1646f,
         type: 2}
@@ -6516,7 +6516,7 @@ Prefab:
     - target: {fileID: 224758025586794896, guid: 5f420405edd4f13408756e4fddf1646f,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224758025586794896, guid: 5f420405edd4f13408756e4fddf1646f,
         type: 2}
@@ -8350,7 +8350,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.014, y: -0.00000038583}
-  m_SizeDelta: {x: 16.864, y: 9.924}
+  m_SizeDelta: {x: 17, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1938748795
 BoxCollider2D:
@@ -8375,7 +8375,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16.864, y: 9.924}
+  m_Size: {x: 17, y: 10}
   m_EdgeRadius: 0
 --- !u!50 &1938748796
 Rigidbody2D:
