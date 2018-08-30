@@ -46,7 +46,11 @@ namespace LazarusClone
         #region Handlers
         void ClearBrickIsFalling()
         {
-            bIsTriggeringWFallingBrick = false;
+            if (bIsTriggeringWFallingBrick)
+            {
+                bIsTriggeringWFallingBrick = false;
+                bIsTriggering = true;
+            }
         }
         #endregion
 
