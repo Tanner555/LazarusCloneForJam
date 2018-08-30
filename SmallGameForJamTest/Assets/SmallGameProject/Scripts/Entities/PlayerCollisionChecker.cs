@@ -7,11 +7,18 @@ namespace LazarusClone
     public class PlayerCollisionChecker : MonoBehaviour
     {
         #region Fields
+        [HideInInspector]
         public bool bIsTriggering = false;
+        [HideInInspector]
         public bool bIsTriggeringWFallingBrick = false;
+        [HideInInspector]
         public bool bOutsidePlayArea = false;
 
         bool bHasDelayStart = false;
+
+        [Header("Brick Checking On Trigger")]
+        [Tooltip("Should Brick Checking Be On Trigger, Default Is False And Updated On Linecast")]
+        public bool bUpdateOnTrigger = false;
         #endregion
 
         #region Properties
@@ -54,6 +61,35 @@ namespace LazarusClone
         }
         #endregion
 
+        #region PublicPlayerMethods
+        public void UpdateIsTriggeringByLinecasting(Vector3 _playerPos, bool _debug = false)
+        {
+            if (_debug)
+            {
+                Debug.DrawLine(_playerPos, transform.position, Color.green, 1f, false);
+            }
+            //All Collision Checkers should be on the IgnoreRaycast Layer
+            RaycastHit2D myHit = Physics2D.Linecast(_playerPos, transform.position, gamemanager.CheckForCollisionLayersIgnorePlayerAndBounds);
+            if (myHit.transform != null)
+            {
+                if(myHit.transform.tag == gamemanager.BrickTag)
+                {
+                    bIsTriggering = true;
+                    bIsTriggeringWFallingBrick = false;
+                }else if(myHit.transform.tag == gamemanager.BrickFallingTag)
+                {
+                    bIsTriggering = false;
+                    bIsTriggeringWFallingBrick = true;
+                }
+            }
+            else
+            {
+                bIsTriggering = false;
+                bIsTriggeringWFallingBrick = false;
+            }
+        }
+        #endregion
+
         #region UnityMessages
         private void OnEnable()
         {
@@ -85,14 +121,17 @@ namespace LazarusClone
 
             if (bHasDelayStart == false) return;
 
-            if (collision.tag == gamemanager.BrickTag)
+            if (bUpdateOnTrigger)
             {
-                bIsTriggering = true;
-                bIsTriggeringWFallingBrick = false;
-            }
-            else if(collision.tag == gamemanager.BrickFallingTag)
-            {
-                bIsTriggeringWFallingBrick = true;
+                if (collision.tag == gamemanager.BrickTag)
+                {
+                    bIsTriggering = true;
+                    bIsTriggeringWFallingBrick = false;
+                }
+                else if (collision.tag == gamemanager.BrickFallingTag)
+                {
+                    bIsTriggeringWFallingBrick = true;
+                }
             }
         }
 
@@ -105,13 +144,16 @@ namespace LazarusClone
 
             if (bHasDelayStart == false) return;
 
-            if (collision.tag == gamemanager.BrickTag)
+            if (bUpdateOnTrigger)
             {
-                bIsTriggering = false;
-            }
-            else if (collision.tag == gamemanager.BrickFallingTag)
-            {
-                bIsTriggeringWFallingBrick = false;
+                if (collision.tag == gamemanager.BrickTag)
+                {
+                    bIsTriggering = false;
+                }
+                else if (collision.tag == gamemanager.BrickFallingTag)
+                {
+                    bIsTriggeringWFallingBrick = false;
+                }
             }
         }
         #endregion

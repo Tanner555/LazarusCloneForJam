@@ -117,12 +117,10 @@ namespace LazarusClone
                 return;
             }
 
-            //Debug.DrawLine(transform.position, transform.position + (LeftChecker.transform.localPosition), Color.green, 1f, false);
-            //RaycastHit2D myHit = Physics2D.Linecast(transform.position, transform.position + (LeftChecker.transform.localPosition), gamemanager.CheckForCollisionLayersIgnorePlayerAndBounds);
-            //if (myHit.transform != null)
-            //{
-            //    Debug.Log("Hit " + myHit.transform.name);
-            //}
+            //VeryLowerLeftChecker.UpdateIsTriggeringByLinecasting(transform.position);
+            LowerLeftChecker.UpdateIsTriggeringByLinecasting(transform.position);
+            LeftChecker.UpdateIsTriggeringByLinecasting(transform.position);
+            UpperLeftChecker.UpdateIsTriggeringByLinecasting(transform.position);
 
             if (LowerLeftChecker.bNotTriggerAndNotOutsideBounds &&
                 LowerLeftChecker.bIsTriggeringWFallingBrick == false &&
@@ -161,6 +159,11 @@ namespace LazarusClone
                 Debug.LogError("Doesn't have all checkers");
                 return;
             }
+
+            //VeryLowerRightChecker.UpdateIsTriggeringByLinecasting(transform.position);
+            LowerRightChecker.UpdateIsTriggeringByLinecasting(transform.position);
+            RightChecker.UpdateIsTriggeringByLinecasting(transform.position);
+            UpperRightChecker.UpdateIsTriggeringByLinecasting(transform.position);
 
             if (LowerRightChecker.bNotTriggerAndNotOutsideBounds &&
                 LowerRightChecker.bIsTriggeringWFallingBrick == false &&
