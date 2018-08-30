@@ -62,14 +62,14 @@ namespace LazarusClone
         #endregion
 
         #region PublicPlayerMethods
-        public void UpdateIsTriggeringByLinecasting(Vector3 _playerPos, bool _debug = false)
+        public void UpdateIsTriggeringByLinecasting(Vector3 _startPos, bool _debug = false)
         {
             if (_debug)
             {
-                Debug.DrawLine(_playerPos, transform.position, Color.green, 1f, false);
+                Debug.DrawLine(_startPos, transform.position, Color.green, 1f, false);
             }
             //All Collision Checkers should be on the IgnoreRaycast Layer
-            RaycastHit2D myHit = Physics2D.Linecast(_playerPos, transform.position, gamemanager.CheckForCollisionLayersIgnorePlayerAndBounds);
+            RaycastHit2D myHit = Physics2D.Linecast(_startPos, transform.position, gamemanager.CheckForCollisionLayersIgnorePlayerAndBounds);
             if (myHit.transform != null)
             {
                 if(myHit.transform.tag == gamemanager.BrickTag)

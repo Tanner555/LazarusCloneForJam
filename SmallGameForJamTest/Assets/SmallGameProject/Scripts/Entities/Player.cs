@@ -117,7 +117,9 @@ namespace LazarusClone
                 return;
             }
 
-            //VeryLowerLeftChecker.UpdateIsTriggeringByLinecasting(transform.position);
+            //Using Left Check Instead Of Player To Avoid Unnecessary Collisions
+            VeryLowerLeftChecker.UpdateIsTriggeringByLinecasting(LeftChecker.transform.position);
+            
             LowerLeftChecker.UpdateIsTriggeringByLinecasting(transform.position);
             LeftChecker.UpdateIsTriggeringByLinecasting(transform.position);
             UpperLeftChecker.UpdateIsTriggeringByLinecasting(transform.position);
@@ -160,7 +162,9 @@ namespace LazarusClone
                 return;
             }
 
-            //VeryLowerRightChecker.UpdateIsTriggeringByLinecasting(transform.position);
+            //Using Right Check Instead Of Player To Avoid Unnecessary Collisions
+            VeryLowerRightChecker.UpdateIsTriggeringByLinecasting(RightChecker.transform.position);
+
             LowerRightChecker.UpdateIsTriggeringByLinecasting(transform.position);
             RightChecker.UpdateIsTriggeringByLinecasting(transform.position);
             UpperRightChecker.UpdateIsTriggeringByLinecasting(transform.position);

@@ -717,7 +717,7 @@ MonoBehaviour:
   bIsTriggering: 0
   bIsTriggeringWFallingBrick: 0
   bOutsidePlayArea: 0
-  bUpdateOnTrigger: 1
+  bUpdateOnTrigger: 0
 --- !u!114 &114639420240774468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -762,7 +762,7 @@ MonoBehaviour:
   bIsTriggering: 0
   bIsTriggeringWFallingBrick: 0
   bOutsidePlayArea: 0
-  bUpdateOnTrigger: 1
+  bUpdateOnTrigger: 0
 --- !u!212 &212018755933860186
 SpriteRenderer:
   m_ObjectHideFlags: 1
