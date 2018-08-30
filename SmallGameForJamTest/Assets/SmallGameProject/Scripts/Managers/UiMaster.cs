@@ -27,7 +27,7 @@ namespace LazarusClone
             if (EventMenuToggle != null) EventMenuToggle(!isPauseMenuOn);
         }
 
-        protected virtual void CallEventAnyUIToggle(bool _enabled)
+        public virtual void CallEventAnyUIToggle(bool _enabled)
         {
             if (EventAnyUIToggle != null) EventAnyUIToggle(_enabled);
         }

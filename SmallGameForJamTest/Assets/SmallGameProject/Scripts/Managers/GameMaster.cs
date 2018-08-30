@@ -78,11 +78,13 @@ namespace LazarusClone
 
         public void CallOnPlayerWasKilled()
         {
+            uiMaster.CallEventAnyUIToggle(true);
             if (OnPlayerWasKilled != null) OnPlayerWasKilled();
         }
 
         public void CallOnPlayerWon()
         {
+            uiMaster.CallEventAnyUIToggle(true);
             if (OnPlayerWon != null) OnPlayerWon();
         }
 

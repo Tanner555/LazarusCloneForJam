@@ -196,6 +196,11 @@ namespace LazarusClone
                 new Vector3(MovementSpeed, 0, 0);
             }
         }
+
+        void KillPlayer()
+        {
+            Destroy(this.gameObject, 0.0f);
+        }
         #endregion
 
         #region Initialization
@@ -203,12 +208,14 @@ namespace LazarusClone
         {
             gamemaster.OnInputMoveLeft += OnMoveLeft;
             gamemaster.OnInputMoveRight += OnMoveRight;
+            gamemaster.OnPlayerWasKilled += KillPlayer;
         }
 
         void UnsubFromEvents()
         {
             gamemaster.OnInputMoveLeft -= OnMoveLeft;
             gamemaster.OnInputMoveRight -= OnMoveRight;
+            gamemaster.OnPlayerWasKilled -= KillPlayer;
         }
         #endregion
     }
