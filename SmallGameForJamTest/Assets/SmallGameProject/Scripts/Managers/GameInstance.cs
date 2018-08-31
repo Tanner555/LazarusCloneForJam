@@ -267,6 +267,7 @@ namespace LazarusClone
 
         protected virtual void UpdateFrameRateLimit()
         {
+#if UNITY_WEBGL == false
             if (QualitySettings.vSyncCount != 0)
             {
                 //Frame Limit Doesn't Work If VSync Is Set Above 0
@@ -276,10 +277,11 @@ namespace LazarusClone
             {
                 Application.targetFrameRate = RefreshRate;
             }
+#endif
         }
-        #endregion
+#endregion
 
-        #region Initialization
+#region Initialization
         protected virtual void InitializeDictionaryValues()
         {
             //Transfer Values From Serialized List To A Dictionary
@@ -294,7 +296,7 @@ namespace LazarusClone
                 levelSettingsDictionary.Add(_settings.Level, _settings);
             }
         }
-        #endregion
+#endregion
 
     }
 }
