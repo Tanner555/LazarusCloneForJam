@@ -20,6 +20,8 @@ namespace LazarusClone
         public string LowerRightTrigger;
         public string RightTrigger;
         public string UpperRightTrigger;
+
+        private float longestAnimationTimeInSeconds = 0.20f;
         #endregion
 
         #region Properties
@@ -113,8 +115,9 @@ namespace LazarusClone
             var _trigger = GetAnimTriggerFromMovePos(_movePos);
             if (_clip != null)
             {
-                yield return new WaitForSeconds(_clip.length);
                 myAnimator.SetTrigger(_trigger);
+                yield return new WaitForSeconds(
+                Mathf.Min(_clip.length, longestAnimationTimeInSeconds));
             }
             myEventHandler.CallOnPlayerMoveEnd(_movePos);
         }

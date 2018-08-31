@@ -51,6 +51,11 @@ namespace LazarusClone
                     && VeryLowerLeftChecker && VeryLowerRightChecker;
             }
         }
+
+        bool bIsMoving
+        {
+            get { return myEventHandler.bPlayerIsMoving; }
+        }
         #endregion
 
         #region ComponentProperties
@@ -119,8 +124,8 @@ namespace LazarusClone
         #region Handlers
         void OnMoveLeft()
         {
-            //Only Move If Hasn't Reached Bounds
-            if (this.transform.position.x - MovementSpeed <= LeftBounds) return;
+            //Only Move If Hasn't Reached Bounds Or Isn't Moving
+            if (this.transform.position.x - MovementSpeed <= LeftBounds || bIsMoving) return;
 
             //Only Move If Has All Checkers
             if (bHasAllCheckers == false)
@@ -142,8 +147,6 @@ namespace LazarusClone
                 VeryLowerLeftChecker.bTriggeringOrOutsideBounds)
             {
                 myEventHandler.CallOnPlayerMoveStart(EPlayerMovementPosition.LowerLeft);
-                this.transform.position = this.transform.position +
-                new Vector3(-MovementSpeed, -MovementSpeed, 0);
             }
             else if (LeftChecker.bTriggerAndNotOutsideBounds &&
                 LeftChecker.bIsTriggeringWFallingBrick == false)
@@ -152,8 +155,6 @@ namespace LazarusClone
                     UpperLeftChecker.bIsTriggeringWFallingBrick == false)
                 {
                     myEventHandler.CallOnPlayerMoveStart(EPlayerMovementPosition.UpperLeft);
-                    this.transform.position = this.transform.position +
-                    new Vector3(-MovementSpeed, MovementSpeed, 0);
                 }
             }
             else if (LeftChecker.bNotTriggerAndNotOutsideBounds &&
@@ -161,15 +162,13 @@ namespace LazarusClone
                 LowerLeftChecker.bTriggeringOrOutsideBounds)
             {
                 myEventHandler.CallOnPlayerMoveStart(EPlayerMovementPosition.Left);
-                this.transform.position = this.transform.position +
-                    new Vector3(-MovementSpeed, 0, 0);
             }
         }
 
         void OnMoveRight()
         {
-            //Only Move If Hasn't Reached Bounds
-            if (this.transform.position.x + MovementSpeed >= RightBounds) return;
+            //Only Move If Hasn't Reached Bounds Or Isn't Moving
+            if (this.transform.position.x + MovementSpeed >= RightBounds || bIsMoving) return;
 
             //Only Move If Has All Checkers
             if (bHasAllCheckers == false)
@@ -191,8 +190,6 @@ namespace LazarusClone
                 VeryLowerRightChecker.bTriggeringOrOutsideBounds)
             {
                 myEventHandler.CallOnPlayerMoveStart(EPlayerMovementPosition.LowerRight);
-                this.transform.position = this.transform.position +
-                new Vector3(MovementSpeed, -MovementSpeed, 0);
             }
             else if (RightChecker.bTriggerAndNotOutsideBounds &&
                 RightChecker.bIsTriggeringWFallingBrick == false)
@@ -201,8 +198,6 @@ namespace LazarusClone
                     UpperRightChecker.bIsTriggeringWFallingBrick == false)
                 {
                     myEventHandler.CallOnPlayerMoveStart(EPlayerMovementPosition.UpperRight);
-                    this.transform.position = this.transform.position +
-                    new Vector3(MovementSpeed, MovementSpeed, 0);
                 }
             }
             else if (RightChecker.bNotTriggerAndNotOutsideBounds &&
@@ -210,8 +205,39 @@ namespace LazarusClone
                 LowerRightChecker.bTriggeringOrOutsideBounds)
             {
                 myEventHandler.CallOnPlayerMoveStart(EPlayerMovementPosition.Right);
-                this.transform.position = this.transform.position +
-                new Vector3(MovementSpeed, 0, 0);
+            }
+        }
+
+        void OnPlayerEndMove(EPlayerMovementPosition _movePos)
+        {
+            switch (_movePos)
+            {
+                case EPlayerMovementPosition.LowerLeft:
+                    this.transform.position = this.transform.position +
+                    new Vector3(-MovementSpeed, -MovementSpeed, 0);
+                    break;
+                case EPlayerMovementPosition.Left:
+                    this.transform.position = this.transform.position +
+                    new Vector3(-MovementSpeed, 0, 0);
+                    break;
+                case EPlayerMovementPosition.UpperLeft:
+                    this.transform.position = this.transform.position +
+                    new Vector3(-MovementSpeed, MovementSpeed, 0);
+                    break;
+                case EPlayerMovementPosition.LowerRight:
+                    this.transform.position = this.transform.position +
+                    new Vector3(MovementSpeed, -MovementSpeed, 0);
+                    break;
+                case EPlayerMovementPosition.Right:
+                    this.transform.position = this.transform.position +
+                    new Vector3(MovementSpeed, 0, 0);
+                    break;
+                case EPlayerMovementPosition.UpperRight:
+                    this.transform.position = this.transform.position +
+                    new Vector3(MovementSpeed, MovementSpeed, 0);
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -227,6 +253,7 @@ namespace LazarusClone
             gamemaster.OnInputMoveLeft += OnMoveLeft;
             gamemaster.OnInputMoveRight += OnMoveRight;
             gamemaster.OnPlayerWasKilled += KillPlayer;
+            myEventHandler.OnPlayerMoveEnd += OnPlayerEndMove;
         }
 
         void UnsubFromEvents()
@@ -234,6 +261,7 @@ namespace LazarusClone
             gamemaster.OnInputMoveLeft -= OnMoveLeft;
             gamemaster.OnInputMoveRight -= OnMoveRight;
             gamemaster.OnPlayerWasKilled -= KillPlayer;
+            myEventHandler.OnPlayerMoveEnd -= OnPlayerEndMove;
         }
         #endregion
     }
