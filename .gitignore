@@ -8,6 +8,11 @@
 # Plugins Folder
 /SmallGameForJamTest/Assets/Plugins
 /SmallGameForJamTest/Assets/Plugins.meta
+# Build Helper Assets
+/SmallGameForJamTest/Assets/unity-build
+/SmallGameForJamTest/Assets/unity-build.meta
+/SmallGameForJamTest/Assets/unity-build-actions
+/SmallGameForJamTest/Assets/unity-build-actions.meta
 # Gizmos Folder
 /SmallGameForJamTest/Assets/Gizmos
 /SmallGameForJamTest/Assets/Gizmos.meta
