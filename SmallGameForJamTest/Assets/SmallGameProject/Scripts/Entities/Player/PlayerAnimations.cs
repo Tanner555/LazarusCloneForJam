@@ -20,6 +20,7 @@ namespace LazarusClone
         public string LowerRightTrigger;
         public string RightTrigger;
         public string UpperRightTrigger;
+        public string IsMovingAnimParameter = "IsMoving";
 
         private float longestAnimationTimeInSeconds = 0.20f;
         #endregion
@@ -104,7 +105,13 @@ namespace LazarusClone
                 return;
             }
 
+            myAnimator.SetBool(IsMovingAnimParameter, true);
             StartCoroutine(PlayAnimationCoroutine(_movePos));        
+        }
+
+        void OnStopMoving(EPlayerMovementPosition _movePos)
+        {
+            myAnimator.SetBool(IsMovingAnimParameter, false);
         }
         #endregion
 
@@ -171,11 +178,13 @@ namespace LazarusClone
         void SubToEvents()
         {
             myEventHandler.OnPlayerMoveStart += StartPlayingAnimation;
+            myEventHandler.OnPlayerMoveEnd += OnStopMoving;
         }
 
         void UnsubFromEvents()
         {
             myEventHandler.OnPlayerMoveStart -= StartPlayingAnimation;
+            myEventHandler.OnPlayerMoveEnd -= OnStopMoving;
         }
         #endregion
     }
