@@ -6,6 +6,33 @@ namespace LazarusClone
 {
     public class PlayerAnimations : MonoBehaviour
     {
+        #region Fields
+        public AnimationClip LowerLeftClip;
+        public AnimationClip LeftClip;
+        public AnimationClip UpperLeftClip;
+        public AnimationClip LowerRightClip;
+        public AnimationClip RightClip;
+        public AnimationClip UpperRightClip;
+
+        public string LowerLeftTrigger;
+        public string LeftTrigger;
+        public string UpperLeftTrigger;
+        public string LowerRightTrigger;
+        public string RightTrigger;
+        public string UpperRightTrigger;
+        #endregion
+
+        #region Properties
+        bool bHasAnimClips
+        {
+            get
+            {
+                return LowerLeftClip && LeftClip && UpperLeftClip &&
+                    LowerRightClip && RightClip && UpperRightClip;
+            }
+        }
+        #endregion
+
         #region ComponentProperties
         GameMaster gamemaster
         {
@@ -40,6 +67,18 @@ namespace LazarusClone
             }
         }
         Player _myPlayer = null;
+
+        Animator myAnimator
+        {
+            get
+            {
+                if (_myAnimator == null)
+                    _myAnimator = GetComponentInChildren<Animator>();
+
+                return _myAnimator;
+            }
+        }
+        Animator _myAnimator = null;
         #endregion
 
         #region UnityMessages
@@ -57,8 +96,71 @@ namespace LazarusClone
         #region Handlers
         void StartPlayingAnimation(EPlayerMovementPosition _movePos)
         {
-            Debug.Log($"Moving To {_movePos}");
+            if(bHasAnimClips == false)
+            {
+                Debug.LogError("No Animation Clips On Player Animations");
+                return;
+            }
+
+            StartCoroutine(PlayAnimationCoroutine(_movePos));        
+        }
+        #endregion
+
+        #region Animations
+        IEnumerator PlayAnimationCoroutine(EPlayerMovementPosition _movePos)
+        {
+            var _clip = GetAnimClipFromMovePos(_movePos);
+            var _trigger = GetAnimTriggerFromMovePos(_movePos);
+            if (_clip != null)
+            {
+                yield return new WaitForSeconds(_clip.length);
+                myAnimator.SetTrigger(_trigger);
+            }
             myEventHandler.CallOnPlayerMoveEnd(_movePos);
+        }
+        #endregion
+
+        #region Getters
+        AnimationClip GetAnimClipFromMovePos(EPlayerMovementPosition _movePos)
+        {
+            switch (_movePos)
+            {
+                case EPlayerMovementPosition.LowerLeft:
+                    return LowerLeftClip;
+                case EPlayerMovementPosition.Left:
+                    return LeftClip;
+                case EPlayerMovementPosition.UpperLeft:
+                    return UpperLeftClip;
+                case EPlayerMovementPosition.LowerRight:
+                    return LowerRightClip;
+                case EPlayerMovementPosition.Right:
+                    return RightClip;
+                case EPlayerMovementPosition.UpperRight:
+                    return UpperRightClip;
+                default:
+                    return null;
+            }
+        }
+
+        string GetAnimTriggerFromMovePos(EPlayerMovementPosition _movePos)
+        {
+            switch (_movePos)
+            {
+                case EPlayerMovementPosition.LowerLeft:
+                    return LowerLeftTrigger;
+                case EPlayerMovementPosition.Left:
+                    return LeftTrigger;
+                case EPlayerMovementPosition.UpperLeft:
+                    return UpperLeftTrigger;
+                case EPlayerMovementPosition.LowerRight:
+                    return LowerRightTrigger;
+                case EPlayerMovementPosition.Right:
+                    return RightTrigger;
+                case EPlayerMovementPosition.UpperRight:
+                    return UpperRightTrigger;
+                default:
+                    return null;
+            }
         }
         #endregion
 

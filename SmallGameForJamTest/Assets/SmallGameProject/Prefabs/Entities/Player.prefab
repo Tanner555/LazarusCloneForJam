@@ -1449,6 +1449,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c360a21c08a737e42852da98e20a3f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LowerLeftClip: {fileID: 7400000, guid: e61754900a947a44482aba44076b9228, type: 2}
+  LeftClip: {fileID: 7400000, guid: 267fda17ce436374cbbad026da3b7a5d, type: 2}
+  UpperLeftClip: {fileID: 7400000, guid: 47791c27992e1ef46906a533fc17b7af, type: 2}
+  LowerRightClip: {fileID: 7400000, guid: 97ab09a69bcf1e74e84017788e5773cb, type: 2}
+  RightClip: {fileID: 7400000, guid: b8d3f648d33256f4c9f582c321ee7a44, type: 2}
+  UpperRightClip: {fileID: 7400000, guid: 24e505074cd8d80489c1f1787009fd2d, type: 2}
+  LowerLeftTrigger: LowerLeft
+  LeftTrigger: Left
+  UpperLeftTrigger: UpperLeft
+  LowerRightTrigger: LowerRight
+  RightTrigger: Right
+  UpperRightTrigger: UpperRight
 --- !u!114 &114480397369710046
 MonoBehaviour:
   m_ObjectHideFlags: 1
