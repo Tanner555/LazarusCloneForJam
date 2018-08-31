@@ -1344,9 +1344,9 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12
-  m_Range: 17
-  m_SpotAngle: 60.2
+  m_Intensity: 15
+  m_Range: 200
+  m_SpotAngle: 50
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -8146,58 +8146,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 212234718271007070, guid: 2ac285aae1a30c74ca21f316918d2bff,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212215280851765290, guid: 2ac285aae1a30c74ca21f316918d2bff,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212234718271007070, guid: 2ac285aae1a30c74ca21f316918d2bff,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212240306260833008, guid: 2ac285aae1a30c74ca21f316918d2bff,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212240306260833008, guid: 2ac285aae1a30c74ca21f316918d2bff,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 0.39215687
-      objectReference: {fileID: 0}
-    - target: {fileID: 212177102507754758, guid: 2ac285aae1a30c74ca21f316918d2bff,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 0.39215687
-      objectReference: {fileID: 0}
-    - target: {fileID: 212601556110225728, guid: 2ac285aae1a30c74ca21f316918d2bff,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 0.39215687
-      objectReference: {fileID: 0}
-    - target: {fileID: 212874255472384998, guid: 2ac285aae1a30c74ca21f316918d2bff,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 0.5882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009130172610010, guid: 2ac285aae1a30c74ca21f316918d2bff, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115254776990324, guid: 2ac285aae1a30c74ca21f316918d2bff, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4696943495835472, guid: 2ac285aae1a30c74ca21f316918d2bff, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ac285aae1a30c74ca21f316918d2bff, type: 2}
