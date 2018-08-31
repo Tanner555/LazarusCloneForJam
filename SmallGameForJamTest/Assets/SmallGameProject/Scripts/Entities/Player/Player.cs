@@ -63,6 +63,18 @@ namespace LazarusClone
         {
             get { return GameManager.thisInstance; }
         }
+
+        PlayerEventHandler myEventHandler
+        {
+            get
+            {
+                if (_myEventHandler == null)
+                    _myEventHandler = GetComponent<PlayerEventHandler>();
+
+                return _myEventHandler;
+            }
+        }
+        PlayerEventHandler _myEventHandler = null;
         #endregion
 
         #region EasyProperties
@@ -129,6 +141,7 @@ namespace LazarusClone
                 LeftChecker.bIsTriggeringWFallingBrick == false &&
                 VeryLowerLeftChecker.bTriggeringOrOutsideBounds)
             {
+                myEventHandler.CallOnPlayerMoveStart(EPlayerMovementPosition.LowerLeft);
                 this.transform.position = this.transform.position +
                 new Vector3(-MovementSpeed, -MovementSpeed, 0);
             }
@@ -138,6 +151,7 @@ namespace LazarusClone
                 if (UpperLeftChecker.bNotTriggerAndNotOutsideBounds &&
                     UpperLeftChecker.bIsTriggeringWFallingBrick == false)
                 {
+                    myEventHandler.CallOnPlayerMoveStart(EPlayerMovementPosition.UpperLeft);
                     this.transform.position = this.transform.position +
                     new Vector3(-MovementSpeed, MovementSpeed, 0);
                 }
@@ -146,6 +160,7 @@ namespace LazarusClone
                 LeftChecker.bIsTriggeringWFallingBrick == false &&
                 LowerLeftChecker.bTriggeringOrOutsideBounds)
             {
+                myEventHandler.CallOnPlayerMoveStart(EPlayerMovementPosition.Left);
                 this.transform.position = this.transform.position +
                     new Vector3(-MovementSpeed, 0, 0);
             }
@@ -175,6 +190,7 @@ namespace LazarusClone
                 RightChecker.bIsTriggeringWFallingBrick == false &&
                 VeryLowerRightChecker.bTriggeringOrOutsideBounds)
             {
+                myEventHandler.CallOnPlayerMoveStart(EPlayerMovementPosition.LowerRight);
                 this.transform.position = this.transform.position +
                 new Vector3(MovementSpeed, -MovementSpeed, 0);
             }
@@ -184,6 +200,7 @@ namespace LazarusClone
                 if (UpperRightChecker.bNotTriggerAndNotOutsideBounds &&
                     UpperRightChecker.bIsTriggeringWFallingBrick == false)
                 {
+                    myEventHandler.CallOnPlayerMoveStart(EPlayerMovementPosition.UpperRight);
                     this.transform.position = this.transform.position +
                     new Vector3(MovementSpeed, MovementSpeed, 0);
                 }
@@ -192,6 +209,7 @@ namespace LazarusClone
                 RightChecker.bIsTriggeringWFallingBrick == false &&
                 LowerRightChecker.bTriggeringOrOutsideBounds)
             {
+                myEventHandler.CallOnPlayerMoveStart(EPlayerMovementPosition.Right);
                 this.transform.position = this.transform.position +
                 new Vector3(MovementSpeed, 0, 0);
             }

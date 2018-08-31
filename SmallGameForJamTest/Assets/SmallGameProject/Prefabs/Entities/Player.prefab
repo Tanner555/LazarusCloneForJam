@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 224485085732059102}
   - component: {fileID: 61650525761951802}
   - component: {fileID: 50787532437993540}
+  - component: {fileID: 114217929765926274}
   - component: {fileID: 114077704529190472}
   m_Layer: 8
   m_Name: Player
@@ -1380,6 +1381,17 @@ MonoBehaviour:
   bIsTriggeringWFallingBrick: 0
   bOutsidePlayArea: 0
   bUpdateOnTrigger: 0
+--- !u!114 &114217929765926274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1160118943159282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d74e9393bbc3300409193bc3c2145032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114320070788233422
 MonoBehaviour:
   m_ObjectHideFlags: 1
