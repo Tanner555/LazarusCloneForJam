@@ -21,8 +21,9 @@ namespace LazarusClone
         public string RightTrigger;
         public string UpperRightTrigger;
         public string IsMovingAnimParameter = "IsMoving";
+        public string IdleTrigger = "Idle";
 
-        private float longestAnimationTimeInSeconds = 0.20f;
+        private float longestAnimationTimeInSeconds = 1f;
         #endregion
 
         #region Properties
@@ -112,6 +113,7 @@ namespace LazarusClone
         void OnStopMoving(EPlayerMovementPosition _movePos)
         {
             myAnimator.SetBool(IsMovingAnimParameter, false);
+            myAnimator.SetTrigger(IdleTrigger);
         }
         #endregion
 
