@@ -33,6 +33,7 @@ namespace LazarusClone
         {
             if(collision.tag == gamemanager.PlayerTag)
             {
+                Debug.Log("Player Won!");
                 gamemaster.CallOnPlayerWon();
             }
         }
