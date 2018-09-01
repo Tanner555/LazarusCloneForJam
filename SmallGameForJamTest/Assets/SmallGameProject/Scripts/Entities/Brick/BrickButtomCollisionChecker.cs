@@ -57,8 +57,13 @@ namespace LazarusClone
             else if(collision.tag == gamemanager.BrickTag &&
                 collision.transform != transform)
             {
-                myBrick.HitBrick();
-                Destroy(this, 0.1f);
+                //Hitting Other Brick Doesn't Destroy It
+                if (myBrick.BrickDestroyedOnHit
+                    (collision.transform.GetComponent<Brick>())
+                    == false)
+                {
+                    Destroy(this, 0.1f);
+                }
             }
         }
 

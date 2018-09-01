@@ -93,17 +93,26 @@ namespace LazarusClone
         }
         #endregion
 
+        #region Getters
+        public virtual int GetDamageRate()
+        {
+            return 0;
+        }
+        #endregion
+
         #region PublicCollisionMethods
-        public virtual void TakeDamage(int _amount)
+        public virtual bool TakeDamageDestroysBrick(int _amount)
         {
             brickHealth = Mathf.Min(brickHealth - _amount, 0);
             if(brickHealth <= 0)
             {
                 DestroyBrick();
+                return true;
             }
             else
             {
                 SetBrickSpriteToDamaged();
+                return false;
             }
         }
 
@@ -117,11 +126,12 @@ namespace LazarusClone
             //CancelInvoke();
         }
 
-        public virtual void HitBrick()
+        public virtual bool BrickDestroyedOnHit(Brick _brick)
         {
             CancelInvoke();
             gamemaster.CallOnBrickWasPlaced();
             this.tag = gamemanager.BrickTag;
+            return false;
         }
 
         public virtual void HitAreaBounds()
