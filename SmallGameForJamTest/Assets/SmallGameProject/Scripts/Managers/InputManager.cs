@@ -60,18 +60,20 @@ namespace LazarusClone
                 {
                     gamemaster.CallOnInputMoveRight();
                 }
+#if UNITY_EDITOR
                 if (Input.GetKeyDown(debugKey))
                 {
                     gameinstance.bDebugOnInputDesired = true;
                     gamemaster.CallOnPressedDebugKey();
                 }
+#endif
             }
             if (Input.GetKeyDown(gameMenu))
             {
                 uiMaster.CallEventMenuToggle();
             }
         }
-        #endregion
+#endregion
 
     }
 }
