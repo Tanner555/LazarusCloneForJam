@@ -39,7 +39,10 @@ namespace LazarusClone
                 //Brick Still Remains
                 //Use Base Method Functionality
                 CancelInvoke();
-                gamemaster.CallOnBrickWasPlaced();
+                if (bCallPlaceBrickOnLanding)
+                {
+                    gamemaster.CallOnBrickWasPlaced();
+                }
                 this.tag = gamemanager.BrickTag;
             }
 

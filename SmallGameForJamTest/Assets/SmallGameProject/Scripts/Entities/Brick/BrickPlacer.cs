@@ -66,7 +66,8 @@ namespace LazarusClone
         void PlaceHeavyOnDebug()
         {
             var _brickPlacement = FindClosestBrickContainer();
-            GameObject.Instantiate(HeavyBrickPrefab, _brickPlacement.position, _brickPlacement.rotation, BrickHolder);
+            var _gObject = GameObject.Instantiate(HeavyBrickPrefab, _brickPlacement.position, _brickPlacement.rotation, BrickHolder);
+            _gObject.GetComponent<Brick>().SetCallPlaceBrickOnLanding(false);
         }
 
         void PlaceBrick()

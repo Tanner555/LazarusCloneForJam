@@ -13,6 +13,8 @@ namespace LazarusClone
 
         protected int brickHealth = 2;
 
+        protected bool bCallPlaceBrickOnLanding = true;
+
         [SerializeField]
         protected Sprite BrickCrumbledSprite = null;
 
@@ -106,6 +108,17 @@ namespace LazarusClone
         }
         #endregion
 
+        #region Setters
+        /// <summary>
+        /// Prevents Multiple Bricks From Being Placed At Same Time
+        /// </summary>
+        /// <param name="_enable"></param>
+        public void SetCallPlaceBrickOnLanding(bool _enable)
+        {
+            bCallPlaceBrickOnLanding = _enable;
+        }
+        #endregion
+
         #region Getters
         public virtual int GetDamageRate()
         {
@@ -176,6 +189,8 @@ namespace LazarusClone
             {
                 InvokeRepeating("SE_UpdateBrickPosition", 0.1f, downwardRepeatRate);
             }
+
+            SetCallPlaceBrickOnLanding(false);
         }
 
         public virtual void PauseBrickMovement()
@@ -194,7 +209,10 @@ namespace LazarusClone
         public virtual bool BrickDestroyedOnHit(Brick _brick)
         {
             CancelInvoke();
-            gamemaster.CallOnBrickWasPlaced();
+            if (bCallPlaceBrickOnLanding)
+            {
+                gamemaster.CallOnBrickWasPlaced();
+            }
             this.tag = gamemanager.BrickTag;
             return false;
         }
@@ -202,7 +220,10 @@ namespace LazarusClone
         public virtual void HitAreaBounds()
         {
             CancelInvoke();
-            gamemaster.CallOnBrickWasPlaced();
+            if (bCallPlaceBrickOnLanding)
+            {
+                gamemaster.CallOnBrickWasPlaced();
+            }
             this.tag = gamemanager.BrickTag;
         }
         #endregion
