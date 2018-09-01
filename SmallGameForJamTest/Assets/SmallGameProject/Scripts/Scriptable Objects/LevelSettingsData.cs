@@ -36,6 +36,14 @@ namespace LazarusClone
     }
 
     [System.Serializable]
+    public class LazarusDifficultySettings
+    {
+        [Range(0.05f, 5f)]
+        [Tooltip("Brick Downward Speed In Seconds")]
+        public float brickDownwardRepeatRate = 0.5f;
+    }
+
+    [System.Serializable]
     public struct LevelSettings
     {
         public string LevelName;
@@ -43,6 +51,7 @@ namespace LazarusClone
         [Tooltip("Used To Load Level Since Scene Assets Cannot Be Used In Builds")]
         public int LevelBuildIndex;
         public Sprite LevelImage;
+        public LazarusDifficultySettings DifficultySettings;
         public List<ScenarioSettings> ScenarioSettingsList;
     }
 

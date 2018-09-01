@@ -16,11 +16,15 @@ MonoBehaviour:
     Level: 0
     LevelBuildIndex: 0
     LevelImage: {fileID: 0}
+    DifficultySettings:
+      brickDownwardRepeatRate: 0.5
     ScenarioSettingsList: []
   - LevelName: Level 1
     Level: 1
     LevelBuildIndex: 1
     LevelImage: {fileID: 0}
+    DifficultySettings:
+      brickDownwardRepeatRate: 0.5
     ScenarioSettingsList:
     - ScenarioName: Just Getting Started
       Scenario: 0
@@ -28,6 +32,8 @@ MonoBehaviour:
     Level: 2
     LevelBuildIndex: 2
     LevelImage: {fileID: 0}
+    DifficultySettings:
+      brickDownwardRepeatRate: 0.25
     ScenarioSettingsList:
     - ScenarioName: Just Getting Started
       Scenario: 0
@@ -35,6 +41,8 @@ MonoBehaviour:
     Level: 3
     LevelBuildIndex: 3
     LevelImage: {fileID: 0}
+    DifficultySettings:
+      brickDownwardRepeatRate: 0.1
     ScenarioSettingsList:
     - ScenarioName: Just Getting Started
       Scenario: 0

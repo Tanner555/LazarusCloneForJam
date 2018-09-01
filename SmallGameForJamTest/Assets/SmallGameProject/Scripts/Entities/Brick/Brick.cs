@@ -22,6 +22,11 @@ namespace LazarusClone
         {
             get { return GameManager.thisInstance; }
         }
+
+        GameInstance gameinstance
+        {
+            get { return GameInstance.thisInstance; }
+        }
         #endregion
 
         #region EasyProps
@@ -41,7 +46,9 @@ namespace LazarusClone
         #region UnityMessages
         private void Start()
         {
-            InvokeRepeating("SE_UpdateBrickPosition", downwardRepeatRate, downwardRepeatRate);
+            var _settings = gameinstance.GetLazarusDifficultySettings();
+            downwardRepeatRate = _settings.brickDownwardRepeatRate;
+            InvokeRepeating("SE_UpdateBrickPosition", 0.5f, downwardRepeatRate);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

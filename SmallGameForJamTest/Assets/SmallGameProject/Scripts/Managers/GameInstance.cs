@@ -155,6 +155,16 @@ namespace LazarusClone
         #endregion
 
         #region Getters/Checks
+        public LazarusDifficultySettings GetLazarusDifficultySettings()
+        {
+            if(levelSettingsData != null &&
+                levelSettingsDictionary.ContainsKey(currentLevel))
+            {
+                return levelSettingsDictionary[currentLevel].DifficultySettings;
+            }
+            return null;
+        }
+
         public virtual bool IsLoadingNextPermitted(out bool _nextScenario, out bool _nextLevel)
         {
             _nextScenario = IsLoadingNextScenarioPermitted();
