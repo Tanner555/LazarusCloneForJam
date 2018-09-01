@@ -8,7 +8,9 @@ namespace LazarusClone
     {
         public override bool BrickDestroyedOnHit(Brick _brick)
         {
-            bool _destroyedBrick = false;
+            bool _destroyedBrickHitBelow = false;
+            bool _destroyedAnyBrickBelow = false;
+            List<Vector3> _locations = new List<Vector3>();
             foreach (var _brickBelow in GetAllBricksBelowTransform())
             {
                 if(_brickBelow != null &&
@@ -17,16 +19,22 @@ namespace LazarusClone
                 {
                     //TODO:Lazarus Make It So Bricks Fall Again
                     //When Brick Below Them Gets Destroyed
-                    if (_brickBelow.TakeDamageDestroysBrick(GetDamageRate()) &&
-                        _brick == _brickBelow)
+                    Vector3 _brickPos = _brickBelow.transform.position;
+                    if (_brickBelow.TakeDamageDestroysBrick(GetDamageRate()))
                     {
-                        //Damage Destroys Brick
-                        _destroyedBrick = true;
+                        _destroyedAnyBrickBelow = true;
+                        if (_brick == _brickBelow)
+                        {
+                            //Damage Destroys Brick Immediately Below
+                            _destroyedBrickHitBelow = true;
+                        }
+                        _locations.Add(_brickPos);
                     }
                 }
             }
 
-            if (_destroyedBrick == false)
+            //Destroyed Brick Immediately Below This One
+            if (_destroyedBrickHitBelow == false)
             {
                 //Brick Still Remains
                 //Use Base Method Functionality
@@ -35,7 +43,17 @@ namespace LazarusClone
                 this.tag = gamemanager.BrickTag;
             }
 
-            return _destroyedBrick;
+            //Destroyed Any Brick Below
+            if (_destroyedAnyBrickBelow)
+            {
+                gamemaster.CallOnBricksWereDestroyed(_locations);
+            }
+            //else
+            //{
+            //    gamemaster.CallOnBricksWereDestroyed(_locations);
+            //}
+
+            return _destroyedBrickHitBelow;
         }
 
         public override int GetDamageRate()

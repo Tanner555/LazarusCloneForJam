@@ -64,6 +64,16 @@ namespace LazarusClone
         #endregion
 
         #region UnityMessages
+        protected virtual void OnEnable()
+        {
+            gamemaster.OnBricksWereDestroyed += OnBricksWereDestroyed;
+        }
+
+        protected virtual void OnDisable()
+        {
+            gamemaster.OnBricksWereDestroyed -= OnBricksWereDestroyed;
+        }
+
         protected virtual void Start()
         {
             var _settings = gameinstance.GetLazarusDifficultySettings();
@@ -105,6 +115,27 @@ namespace LazarusClone
         public virtual float GetDamageRange()
         {
             return 0;
+        }
+        #endregion
+
+        #region Handlers
+        void OnBricksWereDestroyed(List<Vector3> _locations)
+        {
+            bool _destroyedWasBelow = false;
+            foreach (var _brickPos in _locations)
+            {
+                //Destroyed Brick Is Somewhere 
+                //Underneath This Brick
+                if(Mathf.Abs(transform.position.x - _brickPos.x) <= 0.25f)
+                {
+                    _destroyedWasBelow = true;
+                    break;
+                }
+            }
+            if (_destroyedWasBelow && CheckBrickBelowByRaycasting())
+            {
+                ResumeBrickMovement();
+            }
         }
         #endregion
 
@@ -189,6 +220,21 @@ namespace LazarusClone
         #endregion
 
         #region Helpers
+        protected virtual bool CheckBrickBelowByRaycasting()
+        {
+            var _belowHit = Physics2D.Raycast(transform.position, Vector3.down,
+                downwardSpeed, gamemanager.CheckForCollisionLayersIgnorePlayerAndBounds);
+            if(_belowHit.transform != null &&
+                _belowHit.transform.tag == gamemanager.BrickTag)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         protected virtual List<Brick> GetAllBricksBelowTransform(bool _debug = false)
         {
             List<Brick> _bricksFound = new List<Brick>();

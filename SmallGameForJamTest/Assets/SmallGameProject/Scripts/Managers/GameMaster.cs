@@ -50,10 +50,12 @@ namespace LazarusClone
         #region DelegatesAndEvents
         //Input Events
         public delegate void GeneralEventHandler();
+        public delegate void GeneralVector3ListHandler(List<Vector3> _locations);
         public event GeneralEventHandler OnInputMoveLeft;
         public event GeneralEventHandler OnInputMoveRight;
         //Game Events
         public event GeneralEventHandler OnBrickWasPlaced;
+        public event GeneralVector3ListHandler OnBricksWereDestroyed;
         public event GeneralEventHandler OnPlayerWasKilled;
         public event GeneralEventHandler OnPlayerWon;
         #endregion
@@ -74,6 +76,11 @@ namespace LazarusClone
         public void CallOnBrickWasPlaced()
         {
             if (OnBrickWasPlaced != null) OnBrickWasPlaced();
+        }
+
+        public void CallOnBricksWereDestroyed(List<Vector3> _locations)
+        {
+            if (OnBricksWereDestroyed != null) OnBricksWereDestroyed(_locations);
         }
 
         public void CallOnPlayerWasKilled()
