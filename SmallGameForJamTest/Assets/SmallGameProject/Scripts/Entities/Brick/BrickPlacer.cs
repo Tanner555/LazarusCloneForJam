@@ -45,6 +45,7 @@ namespace LazarusClone
         private void OnEnable()
         {
             gamemaster.OnBrickWasPlaced += PlaceBrick;
+            gamemaster.OnPressedDebugKey += PlaceHeavyOnDebug;
             var _settings = gameinstance.GetLazarusDifficultySettings();
             heavyBrickDropChance = _settings.heavyBrickDropChancePercentage;
         }
@@ -52,6 +53,7 @@ namespace LazarusClone
         private void OnDisable()
         {
             gamemaster.OnBrickWasPlaced -= PlaceBrick;
+            gamemaster.OnPressedDebugKey -= PlaceHeavyOnDebug;
         }
 
         private void Start()
@@ -61,6 +63,12 @@ namespace LazarusClone
         #endregion
 
         #region Handlers
+        void PlaceHeavyOnDebug()
+        {
+            var _brickPlacement = FindClosestBrickContainer();
+            GameObject.Instantiate(HeavyBrickPrefab, _brickPlacement.position, _brickPlacement.rotation, BrickHolder);
+        }
+
         void PlaceBrick()
         {
             if (CanPlaceBrick() == false) return;

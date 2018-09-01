@@ -48,10 +48,6 @@ namespace LazarusClone
             {
                 gamemaster.CallOnBricksWereDestroyed(_locations);
             }
-            //else
-            //{
-            //    gamemaster.CallOnBricksWereDestroyed(_locations);
-            //}
 
             return _destroyedBrickHitBelow;
         }

@@ -58,6 +58,8 @@ namespace LazarusClone
         public event GeneralVector3ListHandler OnBricksWereDestroyed;
         public event GeneralEventHandler OnPlayerWasKilled;
         public event GeneralEventHandler OnPlayerWon;
+        //Debugging
+        public event GeneralEventHandler OnPressedDebugKey;
         #endregion
 
         #region EventCalls
@@ -106,6 +108,11 @@ namespace LazarusClone
             Time.timeScale = _enable ? 0f : 1f;
         }
 
+        //Debug
+        public void CallOnPressedDebugKey()
+        {
+            if (OnPressedDebugKey != null) OnPressedDebugKey();
+        }
         #endregion
 
         #region Handlers

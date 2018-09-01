@@ -63,6 +63,7 @@ namespace LazarusClone
                 if (Input.GetKeyDown(debugKey))
                 {
                     gameinstance.bDebugOnInputDesired = true;
+                    gamemaster.CallOnPressedDebugKey();
                 }
             }
             if (Input.GetKeyDown(gameMenu))
