@@ -18,6 +18,7 @@ MonoBehaviour:
     LevelImage: {fileID: 0}
     DifficultySettings:
       brickDownwardRepeatRate: 0.5
+      heavyBrickDropChancePercentage: 0.2
     ScenarioSettingsList: []
   - LevelName: Level 1
     Level: 1
@@ -25,6 +26,7 @@ MonoBehaviour:
     LevelImage: {fileID: 0}
     DifficultySettings:
       brickDownwardRepeatRate: 0.5
+      heavyBrickDropChancePercentage: 0.2
     ScenarioSettingsList:
     - ScenarioName: Just Getting Started
       Scenario: 0
@@ -34,6 +36,7 @@ MonoBehaviour:
     LevelImage: {fileID: 0}
     DifficultySettings:
       brickDownwardRepeatRate: 0.25
+      heavyBrickDropChancePercentage: 0.2
     ScenarioSettingsList:
     - ScenarioName: Just Getting Started
       Scenario: 0
@@ -43,6 +46,7 @@ MonoBehaviour:
     LevelImage: {fileID: 0}
     DifficultySettings:
       brickDownwardRepeatRate: 0.1
+      heavyBrickDropChancePercentage: 0.2
     ScenarioSettingsList:
     - ScenarioName: Just Getting Started
       Scenario: 0

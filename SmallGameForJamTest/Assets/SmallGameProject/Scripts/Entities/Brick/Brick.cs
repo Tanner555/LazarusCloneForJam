@@ -103,7 +103,7 @@ namespace LazarusClone
         #region PublicCollisionMethods
         public virtual bool TakeDamageDestroysBrick(int _amount)
         {
-            brickHealth = Mathf.Min(brickHealth - _amount, 0);
+            brickHealth = Mathf.Max(brickHealth - _amount, 0);
             if(brickHealth <= 0)
             {
                 DestroyBrick();

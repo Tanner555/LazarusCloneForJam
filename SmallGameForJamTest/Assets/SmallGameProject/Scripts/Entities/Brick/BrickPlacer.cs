@@ -13,6 +13,7 @@ namespace LazarusClone
         protected GameObject HeavyBrickPrefab = null;
         [SerializeField]
         protected Transform BrickHolder = null;
+        protected float heavyBrickDropChance = 0.5f;
         //protected float BrickPlacementRate = 1f;
         #endregion
 
@@ -25,6 +26,11 @@ namespace LazarusClone
         GameManager gamemanager
         {
             get { return GameManager.thisInstance; }
+        }
+
+        GameInstance gameinstance
+        {
+            get { return GameInstance.thisInstance; }
         }
         #endregion
 
@@ -39,6 +45,8 @@ namespace LazarusClone
         private void OnEnable()
         {
             gamemaster.OnBrickWasPlaced += PlaceBrick;
+            var _settings = gameinstance.GetLazarusDifficultySettings();
+            heavyBrickDropChance = _settings.heavyBrickDropChancePercentage;
         }
 
         private void OnDisable()
@@ -58,7 +66,9 @@ namespace LazarusClone
             if (CanPlaceBrick() == false) return;
 
             var _brickPlacement = FindClosestBrickContainer();
-            GameObject.Instantiate(BrickPrefab, _brickPlacement.position, _brickPlacement.rotation, BrickHolder);
+            var _brickPrefab = Random.value <= heavyBrickDropChance ?
+                HeavyBrickPrefab : BrickPrefab;
+            GameObject.Instantiate(_brickPrefab, _brickPlacement.position, _brickPlacement.rotation, BrickHolder);
         }
 
 

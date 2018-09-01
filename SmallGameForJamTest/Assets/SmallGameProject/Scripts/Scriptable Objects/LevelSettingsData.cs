@@ -41,6 +41,9 @@ namespace LazarusClone
         [Range(0.05f, 5f)]
         [Tooltip("Brick Downward Speed In Seconds")]
         public float brickDownwardRepeatRate = 0.5f;
+        [Range(0, 1)]
+        [Tooltip(@"Heavy Brick Percent Chance: 0.2 = 20%, 0.8 = 80%")]
+        public float heavyBrickDropChancePercentage = 0.2f;
     }
 
     [System.Serializable]
