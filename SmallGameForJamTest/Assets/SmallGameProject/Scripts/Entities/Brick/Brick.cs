@@ -15,6 +15,11 @@ namespace LazarusClone
 
         protected bool bCallPlaceBrickOnLanding = true;
 
+        /// <summary>
+        /// Used Primarily For Debugging
+        /// </summary>
+        public bool bHasResumedMovementAfterLanding { get; protected set; } = false;
+
         [SerializeField]
         protected Sprite BrickCrumbledSprite = null;
 
@@ -180,12 +185,13 @@ namespace LazarusClone
 
         public virtual void ResumeBrickMovement()
         {
-            if(this.tag == gamemanager.BrickTag)
+            bHasResumedMovementAfterLanding = true;
+            if (this.tag == gamemanager.BrickTag)
             {
                 this.tag = gamemanager.BrickFallingTag;
             }
 
-            if(IsInvoking("SE_UpdateBrickPosition") == false)
+            if (IsInvoking("SE_UpdateBrickPosition") == false)
             {
                 InvokeRepeating("SE_UpdateBrickPosition", 0.1f, downwardRepeatRate);
             }
