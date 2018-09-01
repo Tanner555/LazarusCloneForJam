@@ -8,29 +8,44 @@ namespace LazarusClone
     {
         public override bool BrickDestroyedOnHit(Brick _brick)
         {
-            if(_brick != null &&
-                (_brick is HeavyBrick) == false)
+            bool _destroyedBrick = false;
+            foreach (var _brickBelow in GetAllBricksBelowTransform())
             {
-                if (_brick.TakeDamageDestroysBrick(GetDamageRate()))
+                if(_brickBelow != null &&
+                    (_brickBelow is HeavyBrick) == false &&
+                    Vector3.Distance(transform.position, _brickBelow.transform.position) <= GetDamageRange())
                 {
-                    //Damage Destroys Brick
-                    return true;
-                }
-                else
-                {
-                    //Brick Still Remains
-                    //Use Base Method Functionality
-                    CancelInvoke();
-                    gamemaster.CallOnBrickWasPlaced();
-                    this.tag = gamemanager.BrickTag;
+                    //TODO:Lazarus Make It So Bricks Fall Again
+                    //When Brick Below Them Gets Destroyed
+                    if (_brickBelow.TakeDamageDestroysBrick(GetDamageRate()) &&
+                        _brick == _brickBelow)
+                    {
+                        //Damage Destroys Brick
+                        _destroyedBrick = true;
+                    }
                 }
             }
-            return false;
+
+            if (_destroyedBrick == false)
+            {
+                //Brick Still Remains
+                //Use Base Method Functionality
+                CancelInvoke();
+                gamemaster.CallOnBrickWasPlaced();
+                this.tag = gamemanager.BrickTag;
+            }
+
+            return _destroyedBrick;
         }
 
         public override int GetDamageRate()
         {
             return 1;
+        }
+
+        public override float GetDamageRange()
+        {
+            return 3f;
         }
     }
 }

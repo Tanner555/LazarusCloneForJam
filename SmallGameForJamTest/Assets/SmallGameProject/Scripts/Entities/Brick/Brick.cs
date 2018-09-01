@@ -15,6 +15,9 @@ namespace LazarusClone
 
         [SerializeField]
         protected Sprite BrickCrumbledSprite = null;
+
+        //Raycasting
+        protected float rayCastForBricksLength = 25f;
         #endregion
 
         #region ComponentProperties
@@ -98,6 +101,11 @@ namespace LazarusClone
         {
             return 0;
         }
+
+        public virtual float GetDamageRange()
+        {
+            return 0;
+        }
         #endregion
 
         #region PublicCollisionMethods
@@ -151,6 +159,32 @@ namespace LazarusClone
         protected virtual void SetBrickSpriteToDamaged()
         {
             spriteRenderer.sprite = BrickCrumbledSprite;
+        }
+        #endregion
+
+        #region Helpers
+        protected virtual List<Brick> GetAllBricksBelowTransform(bool _debug = false)
+        {
+            List<Brick> _bricksFound = new List<Brick>();
+            if (_debug)
+            {
+                Debug.DrawLine(transform.position, Vector3.down, Color.green, rayCastForBricksLength, false);
+            }
+
+            RaycastHit2D[] _myHits = Physics2D.RaycastAll(
+                //StartPos, Direction, Distance
+                transform.position, Vector3.down, rayCastForBricksLength,
+                gamemanager.CheckForCollisionLayersIgnorePlayerAndBounds);
+            foreach (var _myHit in _myHits)
+            {
+                if(_myHit.transform != null &&
+                    _myHit.transform.tag == gamemanager.BrickTag)
+                {
+                    _bricksFound.Add(_myHit.transform.GetComponent<Brick>());
+                }
+            }
+
+            return _bricksFound;
         }
         #endregion
 
