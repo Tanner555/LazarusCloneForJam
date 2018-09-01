@@ -5796,6 +5796,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BrickPrefab: {fileID: 1442592947356450, guid: b01f5769220837e49a0a2c14ef05b521,
     type: 2}
+  HeavyBrickPrefab: {fileID: 1442592947356450, guid: f312e73d184e7cd4ca2c8cf1bb7184a1,
+    type: 2}
   BrickHolder: {fileID: 1307574679}
 --- !u!1 &1307574678
 GameObject:

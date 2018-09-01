@@ -10,6 +10,8 @@ namespace LazarusClone
         [SerializeField]
         protected GameObject BrickPrefab = null;
         [SerializeField]
+        protected GameObject HeavyBrickPrefab = null;
+        [SerializeField]
         protected Transform BrickHolder = null;
         //protected float BrickPlacementRate = 1f;
         #endregion

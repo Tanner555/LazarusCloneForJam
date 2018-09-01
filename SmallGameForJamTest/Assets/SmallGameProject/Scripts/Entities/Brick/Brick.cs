@@ -7,30 +7,47 @@ namespace LazarusClone
     public class Brick : MonoBehaviour
     {
         #region Fields   
-        private float downwardSpeed = 1f;
-        [Range(0.05f, 5f)]
-        public float downwardRepeatRate = 0.5f;
+        protected float downwardSpeed = 1f;
+        //[Range(0.05f, 5f)]
+        protected float downwardRepeatRate = 0.5f;
+
+        protected int brickHealth = 2;
+
+        [SerializeField]
+        protected Sprite BrickCrumbledSprite = null;
         #endregion
 
         #region ComponentProperties
-        GameMaster gamemaster
+        protected GameMaster gamemaster
         {
             get { return GameMaster.thisInstance; }
         }
 
-        GameManager gamemanager
+        protected GameManager gamemanager
         {
             get { return GameManager.thisInstance; }
         }
 
-        GameInstance gameinstance
+        protected GameInstance gameinstance
         {
             get { return GameInstance.thisInstance; }
         }
+
+        protected SpriteRenderer spriteRenderer
+        {
+            get
+            {
+                if (_spriteRenderer == null)
+                    _spriteRenderer = GetComponent<SpriteRenderer>();
+
+                return _spriteRenderer;
+            }
+        }
+        private SpriteRenderer _spriteRenderer = null;
         #endregion
 
         #region EasyProps
-        BoxCollider2D myCollider
+        protected BoxCollider2D myCollider
         {
             get
             {
@@ -44,14 +61,14 @@ namespace LazarusClone
         #endregion
 
         #region UnityMessages
-        private void Start()
+        protected virtual void Start()
         {
             var _settings = gameinstance.GetLazarusDifficultySettings();
             downwardRepeatRate = _settings.brickDownwardRepeatRate;
             InvokeRepeating("SE_UpdateBrickPosition", 0.5f, downwardRepeatRate);
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             if(collision.tag == gamemanager.PlayerTag)
             {
@@ -59,17 +76,17 @@ namespace LazarusClone
             }
         }
 
-        //private void OnTriggerExit2D(Collider2D collision)
-        //{
-        //    if(collision.tag == gamemanager.AreaBoundsTag)
-        //    {
-        //        gamemaster.CallOnBrickWasPlaced();
-        //    }
-        //}
+        protected virtual void OnTriggerExit2D(Collider2D collision)
+        {
+            //if (collision.tag == gamemanager.AreaBoundsTag)
+            //{
+            //    gamemaster.CallOnBrickWasPlaced();
+            //}
+        }
         #endregion
 
         #region Services
-        void SE_UpdateBrickPosition()
+        protected virtual void SE_UpdateBrickPosition()
         {
             this.transform.position = this.transform.position +
                 new Vector3(0.0f, -downwardSpeed, 0.0f);
@@ -77,28 +94,53 @@ namespace LazarusClone
         #endregion
 
         #region PublicCollisionMethods
-        public void EscapedHittingPlayer()
+        public virtual void TakeDamage(int _amount)
+        {
+            brickHealth = Mathf.Min(brickHealth - _amount, 0);
+            if(brickHealth <= 0)
+            {
+                DestroyBrick();
+            }
+            else
+            {
+                SetBrickSpriteToDamaged();
+            }
+        }
+
+        public virtual void EscapedHittingPlayer()
         {
             
         }
 
-        public void CloseToHittingPlayer()
+        public virtual void CloseToHittingPlayer()
         {
             //CancelInvoke();
         }
 
-        public void HitBrick()
+        public virtual void HitBrick()
         {
             CancelInvoke();
             gamemaster.CallOnBrickWasPlaced();
             this.tag = gamemanager.BrickTag;
         }
 
-        public void HitAreaBounds()
+        public virtual void HitAreaBounds()
         {
             CancelInvoke();
             gamemaster.CallOnBrickWasPlaced();
             this.tag = gamemanager.BrickTag;
+        }
+        #endregion
+
+        #region OtherBrickMethods
+        protected virtual void DestroyBrick()
+        {
+            Destroy(this.gameObject, 0.1f);
+        }
+
+        protected virtual void SetBrickSpriteToDamaged()
+        {
+            spriteRenderer.sprite = BrickCrumbledSprite;
         }
         #endregion
 
