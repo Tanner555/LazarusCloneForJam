@@ -24,3 +24,17 @@ MonoBehaviour:
     ScenarioSettingsList:
     - ScenarioName: Just Getting Started
       Scenario: 0
+  - LevelName: Level 2
+    Level: 2
+    LevelBuildIndex: 2
+    LevelImage: {fileID: 0}
+    ScenarioSettingsList:
+    - ScenarioName: Just Getting Started
+      Scenario: 0
+  - LevelName: Level 3
+    Level: 3
+    LevelBuildIndex: 3
+    LevelImage: {fileID: 0}
+    ScenarioSettingsList:
+    - ScenarioName: Just Getting Started
+      Scenario: 0

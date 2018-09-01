@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SmallGameProject/Scenes/Level1.unity
     guid: 915f0931b6ba0f74899e9f641ed872f7
+  - enabled: 1
+    path: Assets/SmallGameProject/Scenes/Level2.unity
+    guid: fd47360dfb717ba49b59d6eded1725c1
+  - enabled: 1
+    path: Assets/SmallGameProject/Scenes/Level3.unity
+    guid: 4ae6bf777f0b5da4a85cbe3c41fd701d
   m_configObjects: {}
