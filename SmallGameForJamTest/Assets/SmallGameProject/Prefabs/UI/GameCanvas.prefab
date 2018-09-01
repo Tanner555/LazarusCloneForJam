@@ -885,7 +885,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You Completed All Objectives
+  m_Text: You Have Reached The Light!
 --- !u!114 &114513228981042824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1154,7 +1154,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GAME OVER
+  m_Text: You'll Live Forever In Darkness
 --- !u!114 &114814758806214938
 MonoBehaviour:
   m_ObjectHideFlags: 1
