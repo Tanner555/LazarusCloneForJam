@@ -62,7 +62,7 @@ namespace LazarusClone
                     (collision.transform.GetComponent<Brick>())
                     == false)
                 {
-                    Destroy(this, 0.1f);
+                    myBrick.PauseBrickMovement();
                 }
             }
         }
@@ -73,8 +73,13 @@ namespace LazarusClone
             if (collision.tag == gamemanager.AreaBoundsTag)
             {
                 myBrick.HitAreaBounds();
-                Destroy(this, 0.1f);
-            }else if(collision.tag == gamemanager.PlayerTag)
+                myBrick.PauseBrickMovement();
+            }
+            else if(collision.tag == gamemanager.BrickTag)
+            {
+                myBrick.ResumeBrickMovement();
+            }
+            else if(collision.tag == gamemanager.PlayerTag)
             {
                 myBrick.EscapedHittingPlayer();
             }

@@ -134,6 +134,32 @@ namespace LazarusClone
             //CancelInvoke();
         }
 
+        public virtual void ResumeBrickMovement()
+        {
+            if(this.tag == gamemanager.BrickTag)
+            {
+                this.tag = gamemanager.BrickFallingTag;
+            }
+
+            if(IsInvoking("SE_UpdateBrickPosition") == false)
+            {
+                InvokeRepeating("SE_UpdateBrickPosition", 0.1f, downwardRepeatRate);
+            }
+        }
+
+        public virtual void PauseBrickMovement()
+        {
+            if (this.tag == gamemanager.BrickFallingTag)
+            {
+                this.tag = gamemanager.BrickTag;
+            }
+
+            if (IsInvoking("SE_UpdateBrickPosition"))
+            {
+                CancelInvoke("SE_UpdateBrickPosition");
+            }
+        }
+
         public virtual bool BrickDestroyedOnHit(Brick _brick)
         {
             CancelInvoke();
