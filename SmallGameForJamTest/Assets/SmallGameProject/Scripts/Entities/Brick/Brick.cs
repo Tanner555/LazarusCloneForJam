@@ -70,7 +70,12 @@ namespace LazarusClone
         #endregion
 
         #region PublicCollisionMethods
-        public void HitPlayer()
+        public void EscapedHittingPlayer()
+        {
+            
+        }
+
+        public void CloseToHittingPlayer()
         {
             //CancelInvoke();
         }

@@ -52,8 +52,7 @@ namespace LazarusClone
             if (bHasDelayStart == false) return;
             if (collision.tag == gamemanager.PlayerTag)
             {
-                myBrick.HitPlayer();
-                Destroy(this, 0.1f);
+                myBrick.CloseToHittingPlayer();
             }
             else if(collision.tag == gamemanager.BrickTag &&
                 collision.transform != transform)
@@ -70,6 +69,9 @@ namespace LazarusClone
             {
                 myBrick.HitAreaBounds();
                 Destroy(this, 0.1f);
+            }else if(collision.tag == gamemanager.PlayerTag)
+            {
+                myBrick.EscapedHittingPlayer();
             }
         }
         #endregion
