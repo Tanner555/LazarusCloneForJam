@@ -8,6 +8,8 @@
 # Plugins Folder
 /LazarusCloneForJam/Assets/Plugins
 /LazarusCloneForJam/Assets/Plugins.meta
+# Logs Folder
+/LazarusCloneForJam/Logs
 # Build Helper Assets
 /LazarusCloneForJam/Assets/unity-build
 /LazarusCloneForJam/Assets/unity-build.meta
